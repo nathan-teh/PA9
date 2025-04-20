@@ -1,8 +1,8 @@
 //
 // Created by Nathan Teh on 4/19/25.
 //
+#pragma once
 #include <SFML/Graphics.hpp>
-
 #ifndef GAME_H
 #define GAME_H
 

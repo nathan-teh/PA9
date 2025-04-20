@@ -13,9 +13,7 @@ void Begin(const sf::Window& window) {
     circle.setFillColor(sf::Color::Red);
 }
 
-void Update(float deltaTime) {
 
-}
 
 void Render(sf::RenderWindow& window) {
     window.draw(circle);
