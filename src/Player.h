@@ -14,7 +14,7 @@ public:
 
     void Update(float deltaTime) override;
     void Draw(sf::RenderWindow& window) override;
-
+    void OnCollision(sf::Vector2f direction);
     Collider* GetCollider(){return new Collider(mBody);}
 
 private:

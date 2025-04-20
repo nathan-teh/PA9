@@ -20,8 +20,12 @@ int main()
     sf::Vector2f pos(600,300);
     std::vector<Platform*> platforms;
     Platform platform1(nullptr,sf::Vector2f(400.0f,200.0f),(sf::Vector2f(640.0f,500)));
+    Platform platform2(nullptr,sf::Vector2f(400.0f,100.0f),(sf::Vector2f(250.0f,400)));
 
-    Player user(&playerTexture, pos, 100,50);
+    platforms.push_back(&platform1);
+    platforms.push_back(&platform2);
+
+    Player user(&playerTexture, pos, 100,100);
     Begin(window);
     while (window.isOpen())
     {
@@ -35,12 +39,19 @@ int main()
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) window.close();
         }
         user.Update(deltaTime);
-        platform1.GetCollider()->checkCollision(*user.GetCollider(),1.0f);
+        sf::Vector2f direction;
+        for (Platform* platform : platforms) {
+            if (platform->GetCollider()->checkCollision(*user.GetCollider(),direction,1.0f))
+                user.OnCollision(direction);
+
+
+        }
 
         window.clear();
         user.Draw(window);
-        platform1.Draw(window);
-
+        for (Platform* platform : platforms) {
+            platform->Draw(window);
+        }
         window.display();
     }
 }

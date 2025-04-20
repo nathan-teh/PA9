@@ -4,7 +4,7 @@
 
 #include "Collider.h"
 
-bool Collider::checkCollision(Collider& other, float push) {
+bool Collider::checkCollision(Collider& other,sf::Vector2f& direction,float push) {
     sf::Vector2f otherPosition=other.GetPosition();
     sf::Vector2f otherHalfSize=other.GetHalfSize();
     sf::Vector2f thisPosition=GetPosition();
@@ -26,18 +26,26 @@ bool Collider::checkCollision(Collider& other, float push) {
             if (deltaX > 0.0f) {
                 Move(overlapX * (1.0f - pushClamped), 0.0f);
                 other.Move(-overlapX * pushClamped, 0.0f);
+                direction.x=1.0f;
+                direction.y=0.0f;
             } else {
                 Move(-overlapX * (1.0f - pushClamped), 0.0f);
                 other.Move(overlapX * pushClamped, 0.0f);
+                direction.x=-1.0f;
+                direction.y=0.0f;
             }
         } else {
             // Resolve Y-axis
             if (deltaY > 0.0f) {
                 Move(0.0f, overlapY * (1.0f - pushClamped));
                 other.Move(0.0f, -overlapY * pushClamped);
+                direction.x=0.0f;
+                direction.y=1.0f;
             } else {
                 Move(0.0f, -overlapY * (1.0f - pushClamped));
                 other.Move(0.0f, overlapY * pushClamped);
+                direction.x=0.0f;
+                direction.y=-1.0f;
             }
         }
 

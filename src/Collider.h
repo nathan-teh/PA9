@@ -13,7 +13,7 @@ public:
     Collider(sf::RectangleShape& body) : body(body) {};
     ~Collider() = default;
     void Move(float dx, float dy) {body.move(sf::Vector2f(dx, dy));}
-    bool checkCollision(Collider& other, float push);
+    bool checkCollision(Collider& other, sf::Vector2f& direction,float push);
     sf::Vector2f GetPosition() {return body.getPosition();}
     sf::Vector2f GetHalfSize() {return body.getSize()/2.0f;}
 private:
