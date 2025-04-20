@@ -9,7 +9,7 @@
 
 class Player : public Character {
 public:
-    Player(const sf::Texture* texture, sf::Vector2f pos, float speed, float jumpHeight);
+    Player(const sf::Texture* texture, sf::Vector2f pos, float speed, float jumpHeight, sf::Vector2f size);
     ~Player();
 
     void Update(float deltaTime) override;

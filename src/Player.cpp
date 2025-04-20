@@ -4,12 +4,12 @@
 
 #include "Player.h"
 
-Player::Player(const sf::Texture* texture, const sf::Vector2f pos, float speed, float jumpHeight): pos(pos) {
+Player::Player(const sf::Texture* texture, const sf::Vector2f pos, float speed, float jumpHeight,const sf::Vector2f size): pos(pos) {
     this->mSpeed=speed;
     this->jumpHeight=jumpHeight;
     this->canJump=true;
-    this->mBody.setSize((sf::Vector2f(80.0f, 100.0f)));
-    this->mBody.setOrigin(sf::Vector2f(100.0f, 100.0f)/2.0f);
+    this->mBody.setSize(size);
+    this->mBody.setOrigin((size)/2.0f);
     this->mBody.setTexture(texture);
     this->mBody.setPosition(pos);
 
