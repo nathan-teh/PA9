@@ -20,6 +20,8 @@ add_executable(main
         src/Platform.h
         src/Collider.cpp
         src/Collider.h
+        src/Animation.cpp
+        src/Animation.h
 )
 target_compile_features(main PRIVATE cxx_std_17)
 target_link_libraries(main PRIVATE SFML::Graphics)

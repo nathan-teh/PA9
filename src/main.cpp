@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <vector>
+
+#include "Animation.h"
 #include "Platform.h"
 #include "Player.h"
 
@@ -9,11 +11,16 @@ int main()
     auto window = sf::RenderWindow(sf::VideoMode({1280u, 720u}), "CMake SFML Project");
     window.setFramerateLimit(60);
     sf::Texture playerTexture;
-
+    sf::Texture dragon;
     if (!playerTexture.loadFromFile("assets/images/Goose_v2.PNG")) {
         std::cerr << "Failed to load player texture!\n";
         return -1; // or handle error appropriately
     }
+    if (!dragon.loadFromFile("assets/images/picturedragonFrames_thumb.png")) {
+        std::cerr << "Failed to load player texture!\n";
+        return -1; // or handle error appropriately
+    }
+
 
     sf::Clock deltaClock;
     sf::Vector2f pos(600,300);
@@ -23,11 +30,16 @@ int main()
     sf::Vector2f size(52,100); //character size keep aspect ratio
     objects.push_back(&platform1);
     objects.push_back(&platform2);
-    Player user(&playerTexture, pos, 200,100,size); //can change jump height/speed
+    Player user(&dragon, sf::Vector2u(3, 4), 0.1f,pos, 200,100,size); //can change jump height/speed
+    //Player user(&playerTexture, sf::Vector2u(3, 4), 0.03f,pos, 200,100,size); //can change jump height/speed
+
     objects.push_back(&user);
+
+    float deltaTime = 0.0f;
+    sf::Clock clock;
     while (window.isOpen())
     {
-        float deltaTime = deltaClock.restart().asSeconds();
+        deltaTime = deltaClock.restart().asSeconds();
         while (const std::optional event = window.pollEvent())
         {
             if (event->is<sf::Event::Closed>()) window.close();
@@ -35,6 +47,7 @@ int main()
         }
         for (auto& obj : objects)
             obj->Update(deltaTime);
+
         sf::Vector2f direction;
         for (const auto& obj : objects) {
             if (obj->IsPlatform()) {

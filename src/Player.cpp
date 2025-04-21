@@ -4,7 +4,9 @@
 
 #include "Player.h"
 
-Player::Player(const sf::Texture* texture, const sf::Vector2f pos, float speed, float jumpHeight,const sf::Vector2f size): pos(pos) {
+Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f pos, float speed,
+           float jumpHeight, sf::Vector2f size) : animation(texture, imageCount, switchTime) {
+
     this->mSpeed=speed;
     this->jumpHeight=jumpHeight;
     this->canJump=true;
@@ -13,6 +15,7 @@ Player::Player(const sf::Texture* texture, const sf::Vector2f pos, float speed, 
     this->mBody.setTexture(texture);
     this->mBody.setPosition(pos);
     isGrounded=false;
+    row=3;
 
 }
 
@@ -27,10 +30,17 @@ void Player::Update(float deltaTime){
         canJump=false;
         velocity.y=-sqrtf(2.0f*981.0f*jumpHeight);
     }
+    if (velocity.x==0.0f) row=3;
+    else {
+        if (velocity.x>0.0f) row=2;
+        else row=1;
+    }
     velocity.y+=981.0f*deltaTime;
     mBody.move(velocity*deltaTime);
 
     if (!isGrounded) canJump = false;
+    animation.Update(row, deltaTime);
+    mBody.setTextureRect(animation.uvRect);
 }
 
 void Player::Draw(sf::RenderWindow &window) {

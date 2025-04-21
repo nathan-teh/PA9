@@ -8,7 +8,6 @@
 #include <SFML/Graphics.hpp>
 #include "GameObject.h"
 
-
 class Platform : public GameObject{
 public:
     Platform(sf::Texture* texture, sf::Vector2f size, sf::Vector2f pos);
@@ -21,9 +20,6 @@ public:
 private:
     sf::RectangleShape body;
     sf::Vector2f pos;
-
 };
-
-
 
 #endif //PLATFORM_H
