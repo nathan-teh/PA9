@@ -24,13 +24,17 @@ int main()
     sf::Vector2f pos(600,300);
 
 
-    std::vector<Platform*> platforms; // vector of Platform pointers
-
-    std::cout << "SIZE " << platforms.size() << std::endl;
-
-    mapp.loadMap(platforms);
+    //std::vector<Platform*> platforms; // vector of Platform pointers
 
 
+    sf::Texture brickTexture;
+    if (!brickTexture.loadFromFile("assets/images/BlueBrick.png")) {
+        std::cerr << "Failed to load brick texture!" << std::endl;
+        return -1;
+    }
+    std::vector<std::unique_ptr<Platform>> platforms;
+    Map map(50.f);
+    map.loadMap(platforms, brickTexture);
 
 
     //Platform platform1(nullptr,sf::Vector2f(400.0f,200.0f),(sf::Vector2f(640.0f,500)));
@@ -55,7 +59,7 @@ int main()
         user.Update(deltaTime);
         sf::Vector2f direction;
 
-        for (Platform* platform : platforms) {
+        for (auto& platform : platforms) {
             if (platform->GetCollider()->checkCollision(*user.GetCollider(),direction,1.0f))
                 user.OnCollision(direction);
 
@@ -63,7 +67,7 @@ int main()
 
         window.clear();
         user.Draw(window);
-        for (Platform* platform : platforms) {
+        for (auto& platform : platforms) {
             platform->Draw(window);
         }
         window.display();

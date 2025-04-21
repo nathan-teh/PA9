@@ -8,26 +8,31 @@ Map::Map(float cellSize) {
     this->cellSize = cellSize;
 }
 
-void Map::loadMap(std::vector<Platform*>& platforms) {
-    sf::Image image("assets/images/mapo.png");
-    sf::Texture brick("assets/images/BlueBrick.png");
 
-    //std::vector<int> name
-    //grid = std::vector(image.getSize().x, std::vector(image.getSize().y, 0));
 
-    for (unsigned int x = 0; x < 20; x++) {
-        for (unsigned int y = 0; y < 60; y++) {
 
-            sf::Color color = image.getPixel({x,y});
-
-            if (color == sf::Color::Black) {
-                  Platform temp(&brick,sf::Vector2f(50.0f,50.0f),(sf::Vector2f{static_cast<float>(x),static_cast<float>(y)}));
-                  platforms.push_back(&temp); // might not work since it's deleted each time nooo
-                  std::cout << "X:" << x << "  Y:" << y << std::endl;
-            }
-
-        }
+void Map::loadMap(std::vector<std::unique_ptr<Platform>>& platforms, sf::Texture& brick) {
+    sf::Image image;
+    if (!image.loadFromFile("assets/images/mapo.png")) {
+        std::cerr << "Failed to load map image!" << std::endl;
+        return;
     }
 
+    sf::Vector2u imageSize = image.getSize();
 
+    for (unsigned int x = 0; x < imageSize.x; x++) {
+        for (unsigned int y = 0; y < imageSize.y; y++) {
+            sf::Color color = image.getPixel({x, y});
+
+            if (color == sf::Color::Black) {
+                auto platform = std::make_unique<Platform>(
+                    &brick,
+                    sf::Vector2f(cellSize, cellSize),
+                    sf::Vector2f{x * cellSize, y * cellSize}
+                );
+
+                platforms.push_back(std::move(platform));
+            }
+        }
+    }
 }

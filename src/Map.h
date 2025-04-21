@@ -17,14 +17,11 @@
     // platforms.push_back(&platform2);
 
 class Map {
-
 public:
     Map(float cellSize = 32.0);
     float cellSize;
     std::vector<std::vector<int>> grid;
-    void loadMap(std::vector<Platform*>& platforms);
+    void loadMap(std::vector<std::unique_ptr<Platform>>& platforms, sf::Texture& brick);
 };
-
-
 
 #endif //MAP_H
