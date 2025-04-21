@@ -77,6 +77,17 @@ int main()
 
     //platforms.push_back(&platform1);
     //platforms.push_back(&platform2);
+
+    sf::Font font("/Users/karentinoco/CLionProjects/PA9/assets/images/Jersey15-Regular.ttf");
+    sf::Text elevation(font);
+    elevation.setString("Elevation: ");
+    elevation.setCharacterSize(70);
+    elevation.setFillColor(sf::Color::White);
+    elevation.setPosition({400, 9300});
+        //{window.getSize().x / 10.0f, window.getSize().y / 10.0f});
+
+
+
     Player user(&playerTexture, pos, 100,250);
     Begin(window);
     while (window.isOpen())
@@ -102,11 +113,14 @@ int main()
 
         window.clear();
         window.setView(camera.GetView(window.getSize()));
+
+
         camera.position.x = window.getSize().x / 2.0f;
         user.Draw(window);
         for (auto& platform : platforms) {
             platform->Draw(window);
         }
+        window.draw(elevation);
         window.display();
     }
 }

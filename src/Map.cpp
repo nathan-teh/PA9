@@ -13,7 +13,7 @@ void Map::loadMap(std::vector<std::unique_ptr<Platform>> &platforms, sf::Texture
     sf::Texture &green, sf::Texture &yellow, sf::Texture &purple, sf::Vector2f& playerPos) {
 
     sf::Image image;
-    if (!image.loadFromFile("assets/images/im1.png")) { // map
+    if (!image.loadFromFile("assets/images/m2.png")) { // map
         std::cerr << "Failed to load map image!" << std::endl;
         return;
     }
