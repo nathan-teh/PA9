@@ -24,6 +24,10 @@ add_executable(main
         src/Platform.h
         src/Collider.cpp
         src/Collider.h
+        src/Map.cpp
+        src/Map.h
+        src/Map.cpp
+        src/Map.h
 )
 target_compile_features(main PRIVATE cxx_std_17)
 target_link_libraries(main PRIVATE SFML::Graphics)
