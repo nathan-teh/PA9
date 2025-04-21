@@ -1,6 +1,5 @@
 #include <SFML/Graphics.hpp>
 #include "Game.h"
-#include "Character.h"
 #include "Player.h"
 #include <iostream>
 #include <vector>
