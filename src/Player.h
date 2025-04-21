@@ -24,6 +24,7 @@ private:
     bool canJump;
     float jumpHeight;
     sf::Vector2f velocity;
+    bool isGrounded;
 };
 
 
