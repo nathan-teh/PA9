@@ -17,10 +17,13 @@
 
 class Map {
 public:
-    Map(float cellSize = 32.0);
+    explicit Map(float cellSize = 24.0);
     float cellSize;
     std::vector<std::vector<int>> grid;
-    void loadMap(std::vector<std::unique_ptr<Platform>>& platforms, sf::Texture& brick);
+    void loadMap(std::vector<std::unique_ptr<Platform>>& platforms,
+                                sf::Texture& blue,sf::Texture& lightBlue, sf::Texture& green,
+                                            sf::Texture& yellow, sf::Texture& purple, sf::Vector2f& playerPos);
+
 };
 
 #endif //MAP_H

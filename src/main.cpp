@@ -22,7 +22,7 @@ int main()
         std::cerr << "Failed to load player texture!\n";
         return -1; // or handle error appropriately
     }    sf::Clock deltaClock;
-    sf::Vector2f pos(250,600);
+    sf::Vector2f pos{}; // set this to   // GET IMAGE SIZE
 
    // camera.position = pos;//sf::Vector2f({400,800});
 
@@ -30,22 +30,52 @@ int main()
     //std::vector<Platform*> platforms; // vector of Platform pointers
 
 
-    sf::Texture brickTexture;
-    if (!brickTexture.loadFromFile("assets/images/BlueBrick.png")) {
+    sf::Texture blueBrick;
+    if (!blueBrick.loadFromFile("assets/images/blue.png")) {
         std::cerr << "Failed to load brick texture!" << std::endl;
         return -1;
     }
-    std::vector<std::unique_ptr<Platform>> platforms;
-    Map map(75.f);
-    map.loadMap(platforms, brickTexture);
+    sf::Texture greenBrick;
+    if (!greenBrick.loadFromFile("assets/images/green.png")) {
+        std::cerr << "Failed to load brick texture!" << std::endl;
+        return -1;
+    }
+    sf::Texture yellowBrick;
+    if (!yellowBrick.loadFromFile("assets/images/yellow.png")) {
+        std::cerr << "Failed to load brick texture!" << std::endl;
+        return -1;
+    }
+    sf::Texture purpleBrick;
+    if (!purpleBrick.loadFromFile("assets/images/purple.png")) {
+        std::cerr << "Failed to load brick texture!" << std::endl;
+        return -1;
+    }
+    sf::Texture lightblueBrick;
+    if (!lightblueBrick.loadFromFile("assets/images/lightBlue.png")) {
+        std::cerr << "Failed to load brick texture!" << std::endl;
+        return -1;
+    }
 
+    std::cout << "INITIAL " << pos.x << " " << pos.y << std::endl;
+
+
+
+
+    std::vector<std::unique_ptr<Platform>> platforms;
+    Map map(50.f);
+
+    // pass in a vector instead!!
+    map.loadMap(platforms, blueBrick, lightblueBrick, greenBrick, yellowBrick, purpleBrick, pos);
+
+
+    std::cout << "FOUND " << pos.x << " " << pos.y << std::endl;
 
     //Platform platform1(nullptr,sf::Vector2f(400.0f,200.0f),(sf::Vector2f(640.0f,500)));
    // Platform platform2(nullptr,sf::Vector2f(400.0f,100.0f),(sf::Vector2f(250.0f,400)));
 
     //platforms.push_back(&platform1);
     //platforms.push_back(&platform2);
-    Player user(&playerTexture, pos, 100,100);
+    Player user(&playerTexture, pos, 100,250);
     Begin(window);
     while (window.isOpen())
     {
