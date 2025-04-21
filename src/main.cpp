@@ -100,6 +100,7 @@ int main()
 
         window.clear();
         window.setView(camera.GetView(window.getSize()));
+        camera.position.x = window.getSize().x / 2.0f;
         user.Draw(window);
         for (auto& platform : platforms) {
             platform->Draw(window);

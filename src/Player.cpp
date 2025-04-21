@@ -6,14 +6,14 @@
 
 #include <iostream>
 
-Camera camera(1800);
+Camera camera(1000);
 
 Player::Player(const sf::Texture* texture, const sf::Vector2f pos, float speed, float jumpHeight): pos(pos) {
     this->mSpeed=speed;
     this->jumpHeight=jumpHeight;
     this->canJump=true;
-    this->mBody.setSize((sf::Vector2f(120.0f, 120.0f)));
-    this->mBody.setOrigin(sf::Vector2f(120.0f, 120.0f)/2.0f);
+    this->mBody.setSize((sf::Vector2f(52.0f * 1.5, 100.0f * 1.5)));
+    this->mBody.setOrigin(sf::Vector2f((52.0 * 1.5f)/2, (100.0f*1.5)/2));
     this->mBody.setTexture(texture);
     this->mBody.setPosition(pos);
 
@@ -37,7 +37,7 @@ void Player::Update(float deltaTime){
 
     std::cout << mBody.getPosition().x << " " << mBody.getPosition().y << std::endl;
 
-    camera.position = sf::Vector2f(mBody.getPosition().x, mBody.getPosition().y);
+    camera.position.y = mBody.getPosition().y;
 
 }
 
