@@ -15,6 +15,7 @@ public:
     Player(const sf::Texture* texture, sf::Vector2f pos, float speed, float jumpHeight);
     ~Player();
 
+
     void Update(float deltaTime) override;
     void Draw(sf::RenderWindow& window) override;
     void OnCollision(sf::Vector2f direction);
@@ -28,6 +29,7 @@ private:
     float jumpHeight;
     sf::Vector2f velocity;
 };
+
 
 
 

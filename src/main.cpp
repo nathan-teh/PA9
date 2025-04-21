@@ -15,6 +15,8 @@
 int main()
 {
 
+
+
     Map mapp;
     auto window = sf::RenderWindow(sf::VideoMode({1280u, 720u}), "CMake SFML Project");
     window.setFramerateLimit(60);

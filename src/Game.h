@@ -6,8 +6,6 @@
 #ifndef GAME_H
 #define GAME_H
 
-
-
 void Begin(const sf::Window& window);
 
 void Update(float deltaTime);

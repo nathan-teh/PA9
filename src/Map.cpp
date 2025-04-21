@@ -25,6 +25,7 @@ void Map::loadMap(std::vector<std::unique_ptr<Platform>>& platforms, sf::Texture
             sf::Color color = image.getPixel({x, y});
 
             if (color == sf::Color::Black) {
+
                 auto platform = std::make_unique<Platform>(
                     &brick,
                     sf::Vector2f(cellSize, cellSize),

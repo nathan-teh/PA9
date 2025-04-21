@@ -12,7 +12,6 @@
 
     //Platform platform1(nullptr,sf::Vector2f(400.0f,200.0f),(sf::Vector2f(640.0f,500)));
     //Platform platform2(nullptr,sf::Vector2f(400.0f,100.0f),(sf::Vector2f(250.0f,400)));
-
     //platforms.push_back(&platform1);
     // platforms.push_back(&platform2);
 

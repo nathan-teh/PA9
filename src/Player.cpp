@@ -33,6 +33,7 @@ void Player::Update(float deltaTime){
     velocity.y+=981.0f*deltaTime;
     mBody.move(velocity*deltaTime);
     camera.position = pos;
+
 }
 
 void Player::Draw(sf::RenderWindow &window) {
