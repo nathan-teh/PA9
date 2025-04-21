@@ -1,5 +1,4 @@
 #include <SFML/Graphics.hpp>
-#include "Game.h"
 #include "Player.h"
 #include <iostream>
 #include <vector>
@@ -25,7 +24,7 @@ int main()
     objects.push_back(&platform2);
     Player user(&playerTexture, pos, 100,100,size);
     objects.push_back(&user);
-    Begin(window);
+    //Begin(window);
     while (window.isOpen())
     {
         float deltaTime = deltaClock.restart().asSeconds();
