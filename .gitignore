@@ -5,3 +5,5 @@ out
 .vs
 .vscode
 cmake-build-debug/
+/build/
+/cmake-build-*/
