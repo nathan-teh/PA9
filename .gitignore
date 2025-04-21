@@ -7,3 +7,4 @@ out
 cmake-build-debug/
 /build/
 /cmake-build-*/
+/cmake-build-debug/
