@@ -16,7 +16,9 @@ Player::Player(const sf::Texture* texture, const sf::Vector2f pos, float speed, 
     this->mBody.setOrigin(sf::Vector2f((52.0 * 1.5f)/2, (100.0f*1.5)/2));
     this->mBody.setTexture(texture);
     this->mBody.setPosition(pos);
-
+    if (!music.openFromFile("Jump.ogg")) {
+        std::cerr << "Failed to load jump sound!" << std::endl;
+    }
 }
 
 Player::~Player() {
@@ -24,12 +26,12 @@ Player::~Player() {
 
 void Player::Update(float deltaTime){
     velocity.x=0.3f;
-
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) velocity.x-=mSpeed;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) velocity.x+=mSpeed;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && canJump)
     {
         canJump=false;
+        music.play();
         velocity.y=-sqrtf(2.0f*981.0f*jumpHeight);
     }
     velocity.y+=981.0f*deltaTime;

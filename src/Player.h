@@ -5,8 +5,10 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include <SFML/Audio.hpp>
 #include "Character.h"
 #include "Camera.h"
+#include <SFML/Audio/Sound.hpp>
 
 extern Camera camera;
 
@@ -27,6 +29,7 @@ private:
     sf::Vector2f pos;
     bool canJump;
     float jumpHeight;
+    sf::Music music;
     sf::Vector2f velocity;
 };
 

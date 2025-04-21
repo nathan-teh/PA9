@@ -2,7 +2,6 @@
     Modified by Tifanie Ngo on 4/21/25: connected title screen and transition screen with gameplay
 */
 
-#include <SFML/Graphics.hpp>
 #include "Game.h"
 #include "Character.h"
 #include "Player.h"
@@ -12,7 +11,6 @@
 #include "Collider.h"
 #include "Camera.h"
 #include "Button.hpp"
-#include <SFML/Audio.hpp>
 #include "Map.h"
 
 enum class GameState {
@@ -26,7 +24,7 @@ int main()
     Map mapp;
     auto window = sf::RenderWindow(sf::VideoMode({ 1500u, 900u }), "YO-HO JUMP");
     window.setFramerateLimit(60);
-    sf::Texture playerTexture;
+    Texture playerTexture;
     Texture titleTexture;
     if (!titleTexture.loadFromFile("pirate-island-1.jpg")) {
         std::cerr << "Failed to load background image!\n";
@@ -100,7 +98,7 @@ int main()
 
     //platforms.push_back(&platform1);
     //platforms.push_back(&platform2);
-    Player user(&playerTexture, pos, 100, 250);
+    Player user(&playerTexture, pos, 500, 250);
 
     music.play();
 
