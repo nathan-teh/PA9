@@ -70,6 +70,8 @@ int main()
 
     std::cout << "FOUND " << pos.x << " " << pos.y << std::endl;
 
+    //pos.y = pos.y + 50.f;
+
     //Platform platform1(nullptr,sf::Vector2f(400.0f,200.0f),(sf::Vector2f(640.0f,500)));
    // Platform platform2(nullptr,sf::Vector2f(400.0f,100.0f),(sf::Vector2f(250.0f,400)));
 

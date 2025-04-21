@@ -12,8 +12,8 @@ Player::Player(const sf::Texture* texture, const sf::Vector2f pos, float speed, 
     this->mSpeed=speed;
     this->jumpHeight=jumpHeight;
     this->canJump=true;
-    this->mBody.setSize((sf::Vector2f(52.0f * 1.5, 100.0f * 1.5)));
-    this->mBody.setOrigin(sf::Vector2f((52.0 * 1.5f)/2, (100.0f*1.5)/2));
+    this->mBody.setSize((sf::Vector2f(52.0f * 0.9, 100.0f * 0.9)));
+    this->mBody.setOrigin(sf::Vector2f((52.0 * 0.9f)/2, (100.0f*0.9)/2));
     this->mBody.setTexture(texture);
     this->mBody.setPosition(pos);
 
@@ -25,9 +25,9 @@ Player::~Player() {
 void Player::Update(float deltaTime){
     velocity.x=0.3f;
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) velocity.x-=mSpeed;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) velocity.x+=mSpeed;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && canJump)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) velocity.x-=mSpeed;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) velocity.x+=mSpeed;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) && canJump)
     {
         canJump=false;
         velocity.y=-sqrtf(2.0f*981.0f*jumpHeight);
@@ -37,7 +37,11 @@ void Player::Update(float deltaTime){
 
     std::cout << mBody.getPosition().x << " " << mBody.getPosition().y << std::endl;
 
-    camera.position.y = mBody.getPosition().y;
+    camera.position.y = mBody.getPosition().y -250.0f;
+
+
+    // don't move camera, if player hits certain y change to that y section
+    // add camera and position adjuster when you change the screen size
 
 }
 
