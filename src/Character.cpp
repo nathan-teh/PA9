@@ -12,4 +12,3 @@ void Character::Draw(sf::RenderWindow &window) {
     return;
 }
 
-

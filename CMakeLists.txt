@@ -28,6 +28,8 @@ add_executable(main
         src/Map.h
         src/Map.cpp
         src/Map.h
+        src/Camera.cpp
+        src/Camera.h
 )
 target_compile_features(main PRIVATE cxx_std_17)
 target_link_libraries(main PRIVATE SFML::Graphics)

@@ -4,6 +4,8 @@
 
 #include "Player.h"
 
+Camera camera(1200);
+
 Player::Player(const sf::Texture* texture, const sf::Vector2f pos, float speed, float jumpHeight): pos(pos) {
     this->mSpeed=speed;
     this->jumpHeight=jumpHeight;
@@ -30,6 +32,7 @@ void Player::Update(float deltaTime){
     }
     velocity.y+=981.0f*deltaTime;
     mBody.move(velocity*deltaTime);
+    camera.position = pos;
 }
 
 void Player::Draw(sf::RenderWindow &window) {

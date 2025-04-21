@@ -6,8 +6,10 @@
 #include <vector>
 #include "Platform.h"
 #include "Collider.h"
+#include "Camera.h"
 
 #include "Map.h"
+
 
 
 int main()
@@ -21,7 +23,9 @@ int main()
         std::cerr << "Failed to load player texture!\n";
         return -1; // or handle error appropriately
     }    sf::Clock deltaClock;
-    sf::Vector2f pos(600,300);
+    sf::Vector2f pos(250,600);
+
+    camera.position = pos;//sf::Vector2f({400,800});
 
 
     //std::vector<Platform*> platforms; // vector of Platform pointers
@@ -66,6 +70,7 @@ int main()
         }
 
         window.clear();
+        window.setView(camera.GetView(window.getSize()));
         user.Draw(window);
         for (auto& platform : platforms) {
             platform->Draw(window);

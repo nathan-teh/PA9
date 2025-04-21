@@ -6,6 +6,9 @@
 #define PLAYER_H
 
 #include "Character.h"
+#include "Camera.h"
+
+extern Camera camera;
 
 class Player : public Character {
 public:
