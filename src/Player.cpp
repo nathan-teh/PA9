@@ -10,7 +10,7 @@ Player::Player(const sf::Texture* texture, const sf::Vector2f pos, float speed, 
     this->mSpeed=speed;
     this->jumpHeight=jumpHeight;
     this->canJump=true;
-    this->mBody.setSize((sf::Vector2f(80.0f, 100.0f)));
+    this->mBody.setSize((sf::Vector2f(120.0f, 120.0f)));
     this->mBody.setOrigin(sf::Vector2f(100.0f, 100.0f)/2.0f);
     this->mBody.setTexture(texture);
     this->mBody.setPosition(pos);
@@ -21,7 +21,7 @@ Player::~Player() {
 }
 
 void Player::Update(float deltaTime){
-    velocity.x=0.0f;
+    velocity.x=0.3f;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) velocity.x-=mSpeed;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) velocity.x+=mSpeed;
@@ -32,7 +32,7 @@ void Player::Update(float deltaTime){
     }
     velocity.y+=981.0f*deltaTime;
     mBody.move(velocity*deltaTime);
-    camera.position = pos;
+    camera.position = sf::Vector2f(mBody.getPosition().x, mBody.getPosition().y);
 
 }
 

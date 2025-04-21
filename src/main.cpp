@@ -14,9 +14,6 @@
 
 int main()
 {
-
-
-
     Map mapp;
     auto window = sf::RenderWindow(sf::VideoMode({1280u, 720u}), "CMake SFML Project");
     window.setFramerateLimit(60);
@@ -27,7 +24,7 @@ int main()
     }    sf::Clock deltaClock;
     sf::Vector2f pos(250,600);
 
-    camera.position = pos;//sf::Vector2f({400,800});
+   // camera.position = pos;//sf::Vector2f({400,800});
 
 
     //std::vector<Platform*> platforms; // vector of Platform pointers
@@ -39,7 +36,7 @@ int main()
         return -1;
     }
     std::vector<std::unique_ptr<Platform>> platforms;
-    Map map(50.f);
+    Map map(75.f);
     map.loadMap(platforms, brickTexture);
 
 

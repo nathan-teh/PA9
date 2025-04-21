@@ -13,7 +13,7 @@ Map::Map(float cellSize) {
 
 void Map::loadMap(std::vector<std::unique_ptr<Platform>>& platforms, sf::Texture& brick) {
     sf::Image image;
-    if (!image.loadFromFile("assets/images/mapo.png")) {
+    if (!image.loadFromFile("assets/images/MapV.png")) {
         std::cerr << "Failed to load map image!" << std::endl;
         return;
     }
