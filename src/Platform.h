@@ -6,18 +6,21 @@
 #define PLATFORM_H
 
 #include <SFML/Graphics.hpp>
-#include "Collider.h"
+#include "GameObject.h"
 
 
-class Platform {
+class Platform : public GameObject{
 public:
     Platform(sf::Texture* texture, sf::Vector2f size, sf::Vector2f pos);
-    ~Platform();
-
-    void Draw(sf::RenderWindow& window);
-    Collider* GetCollider(){return new Collider(body);}
+    ~Platform() {}
+    void Update(float deltaTime) override {}
+    bool IsPlatform() const override { return true; }
+    void Draw(sf::RenderWindow& window) override;
+    sf::Vector2f GetPosition() const override {return pos;}
+    Collider* GetCollider() override {return new Collider(body);}
 private:
     sf::RectangleShape body;
+    sf::Vector2f pos;
 
 };
 

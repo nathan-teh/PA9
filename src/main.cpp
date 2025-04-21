@@ -18,40 +18,36 @@ int main()
         return -1; // or handle error appropriately
     }    sf::Clock deltaClock;
     sf::Vector2f pos(600,300);
-    std::vector<Platform*> platforms;
+    std::vector<GameObject*> objects;
     Platform platform1(nullptr,sf::Vector2f(400.0f,200.0f),(sf::Vector2f(640.0f,500)));
     Platform platform2(nullptr,sf::Vector2f(400.0f,100.0f),(sf::Vector2f(250.0f,400)));
     sf::Vector2f size(52,100);
-    platforms.push_back(&platform1);
-    platforms.push_back(&platform2);
-
+    objects.push_back(&platform1);
+    objects.push_back(&platform2);
     Player user(&playerTexture, pos, 100,100,size);
+    objects.push_back(&user);
     Begin(window);
     while (window.isOpen())
     {
         float deltaTime = deltaClock.restart().asSeconds();
         while (const std::optional event = window.pollEvent())
         {
-            if (event->is<sf::Event::Closed>())
-            {
-                window.close();
-            }
+            if (event->is<sf::Event::Closed>()) window.close();
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) window.close();
         }
-        user.Update(deltaTime);
+        for (auto& obj : objects)
+            obj->Update(deltaTime);
         sf::Vector2f direction;
-        for (Platform* platform : platforms) {
-            if (platform->GetCollider()->checkCollision(*user.GetCollider(),direction,1.0f))
-                user.OnCollision(direction);
-
-
+        for (const auto& obj : objects) {
+            if (obj->IsPlatform()) {
+                if (obj->GetCollider()->checkCollision(*user.GetCollider(), direction, 1.0f))
+                    user.OnCollision(direction);
+            }
         }
-
         window.clear();
-        user.Draw(window);
-        for (Platform* platform : platforms) {
-            platform->Draw(window);
-        }
+        for (auto& obj : objects)
+            obj->Draw(window);
         window.display();
     }
+
 }

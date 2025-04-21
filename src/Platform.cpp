@@ -9,10 +9,9 @@ Platform::Platform(sf::Texture* texture, sf::Vector2f size, sf::Vector2f pos) {
     body.setOrigin(size/2.0f);
     body.setSize(size);
     body.setPosition(pos);
+    this->pos=pos;
 }
-Platform::~Platform() {
 
-}
 void Platform::Draw(sf::RenderWindow& window) {
     window.draw(body);
 }

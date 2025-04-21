@@ -5,17 +5,19 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "Character.h"
+#include "GameObject.h"
 
-class Player : public Character {
+class Player : public GameObject {
 public:
     Player(const sf::Texture* texture, sf::Vector2f pos, float speed, float jumpHeight, sf::Vector2f size);
-    ~Player();
-
+    ~Player() {}
+    sf::Vector2f GetPosition() const override {return pos;}
     void Update(float deltaTime) override;
     void Draw(sf::RenderWindow& window) override;
     void OnCollision(sf::Vector2f direction);
-    Collider* GetCollider(){return new Collider(mBody);}
+    Collider* GetCollider() override {return new Collider(mBody);}
+    bool IsPlatform() const override { return false; }
+
 
 private:
     sf::RectangleShape mBody;

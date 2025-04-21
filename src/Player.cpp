@@ -16,9 +16,6 @@ Player::Player(const sf::Texture* texture, const sf::Vector2f pos, float speed, 
 
 }
 
-Player::~Player() {
-}
-
 void Player::Update(float deltaTime){
     velocity.x=0.0f;
     isGrounded = false;
