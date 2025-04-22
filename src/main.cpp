@@ -78,7 +78,7 @@ int main()
     //platforms.push_back(&platform1);
     //platforms.push_back(&platform2);
 
-    sf::Font font("/Users/karentinoco/CLionProjects/PA9/assets/images/Jersey15-Regular.ttf");
+    sf::Font font("assets/images/Jersey15-Regular.ttf");
     sf::Text elevation(font);
     elevation.setString("Elevation: ");
     elevation.setCharacterSize(70);
@@ -88,7 +88,7 @@ int main()
 
 
 
-    Player user(&playerTexture, pos, 100,250);
+    Player user(&playerTexture, pos, 195            ,210);
     Begin(window);
     while (window.isOpen())
     {
