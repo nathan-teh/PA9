@@ -88,7 +88,7 @@ int main()
 
 
 
-    Player user(&playerTexture, pos, 195            ,210);
+    Player user(&playerTexture, pos, 165            ,215);
     Begin(window);
     while (window.isOpen())
     {
