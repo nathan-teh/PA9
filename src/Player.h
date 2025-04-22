@@ -11,13 +11,13 @@
 class Player : public GameObject {
 public:
     Player(sf::Texture *texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f pos, float speed,
-           float jumpHeight, sf::Vector2f size);
+           float jumpHeight, sf::Vector2f size, sf::Vector2f collisionSize);
     ~Player() {}
     sf::Vector2f GetPosition() const override {return pos;}
     void Update(float deltaTime) override;
     void Draw(sf::RenderWindow& window) override;
     void OnCollision(sf::Vector2f direction);
-    Collider* GetCollider() override {return new Collider(mBody);}
+    Collider* GetCollider() override {return new Collider(collisionBox);}
     bool IsPlatform() const override { return false; }
 
 
@@ -31,6 +31,8 @@ private:
     sf::Vector2f velocity;
     bool isGrounded;
     unsigned int row;
+    bool faceRight;
+    sf::RectangleShape collisionBox;
 };
 
 

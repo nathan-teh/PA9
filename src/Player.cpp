@@ -5,18 +5,23 @@
 #include "Player.h"
 
 Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f pos, float speed,
-           float jumpHeight, sf::Vector2f size) : animation(texture, imageCount, switchTime) {
+               float jumpHeight, sf::Vector2f size,sf::Vector2f collisionSize) : animation(texture, imageCount, switchTime) {
 
     this->mSpeed=speed;
     this->jumpHeight=jumpHeight;
     this->canJump=true;
+
+    collisionBox.setSize(collisionSize);
+    collisionBox.setOrigin((collisionSize)/2.0f);
+    collisionBox.setPosition(pos);
+
     this->mBody.setSize(size);
     this->mBody.setOrigin((size)/2.0f);
     this->mBody.setTexture(texture);
     this->mBody.setPosition(pos);
     isGrounded=false;
-    row=3;
-
+    row=0;
+    faceRight=true;
 }
 
 void Player::Update(float deltaTime){
@@ -30,16 +35,25 @@ void Player::Update(float deltaTime){
         canJump=false;
         velocity.y=-sqrtf(2.0f*981.0f*jumpHeight);
     }
-    if (velocity.x==0.0f) row=3;
+    if (velocity.x==0.0f) row=0;
     else {
-        if (velocity.x>0.0f) row=2;
-        else row=1;
+        row=3;
+        if (velocity.x>0.0) faceRight=true;
+        else faceRight=false;
     }
+    if (velocity.y!=0) row=1;
     velocity.y+=981.0f*deltaTime;
-    mBody.move(velocity*deltaTime);
+    //mBody.move(velocity*deltaTime);
+    //collisionBox.move(velocity*deltaTime);
+    sf::Vector2f newPos = collisionBox.getPosition() + velocity * deltaTime;
+    sf::Vector2f offset(0.0f, -8.0f);
+    mBody.setPosition(collisionBox.getPosition() + offset);
+    collisionBox.setPosition(newPos);
+    //mBody.setPosition(newPos);
+
 
     if (!isGrounded) canJump = false;
-    animation.Update(row, deltaTime);
+    animation.Update(row, deltaTime,faceRight);
     mBody.setTextureRect(animation.uvRect);
 }
 

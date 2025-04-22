@@ -11,27 +11,25 @@ int main()
     auto window = sf::RenderWindow(sf::VideoMode({1280u, 720u}), "CMake SFML Project");
     window.setFramerateLimit(60);
     sf::Texture playerTexture;
-    sf::Texture dragon;
-    if (!playerTexture.loadFromFile("assets/images/Goose_v2.PNG")) {
+
+    if (!playerTexture.loadFromFile("assets/images/Duck_Sprite_Sheet.png")) {
         std::cerr << "Failed to load player texture!\n";
         return -1; // or handle error appropriately
     }
-    if (!dragon.loadFromFile("assets/images/picturedragonFrames_thumb.png")) {
-        std::cerr << "Failed to load player texture!\n";
-        return -1; // or handle error appropriately
-    }
-
-
+    sf::Vector2f collisionSize = {30.0f,80.0f};
     sf::Clock deltaClock;
     sf::Vector2f pos(600,300);
     std::vector<GameObject*> objects;
     Platform platform1(nullptr,sf::Vector2f(400.0f,200.0f),(sf::Vector2f(640.0f,500)));
     Platform platform2(nullptr,sf::Vector2f(400.0f,100.0f),(sf::Vector2f(250.0f,400)));
-    sf::Vector2f size(52,100); //character size keep aspect ratio
+    Platform platform3(nullptr,sf::Vector2f(400.0f,400.0f),(sf::Vector2f(800.0f,500)));
+
+    sf::Vector2f size(96,100); //character size keep aspect ratio
     objects.push_back(&platform1);
     objects.push_back(&platform2);
-    Player user(&dragon, sf::Vector2u(3, 4), 0.1f,pos, 200,100,size); //can change jump height/speed
-    //Player user(&playerTexture, sf::Vector2u(3, 4), 0.03f,pos, 200,100,size); //can change jump height/speed
+    objects.push_back(&platform3);
+
+    Player user(&playerTexture, sf::Vector2u(4, 5), 0.1f,pos, 200,100, size, collisionSize); //can change jump height/speed
 
     objects.push_back(&user);
 
