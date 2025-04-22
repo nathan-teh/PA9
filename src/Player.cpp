@@ -4,6 +4,11 @@
 
 #include "Player.h"
 
+#include <iostream>
+
+Camera camera(1000);
+
+Player::Player(const sf::Texture* texture, const sf::Vector2f pos, float speed, float jumpHeight): pos(pos) {
 Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f pos, float speed,
                float jumpHeight, sf::Vector2f size,sf::Vector2f collisionSize) : animation(texture, imageCount, switchTime) {
 
@@ -55,6 +60,13 @@ void Player::Update(float deltaTime){
     if (!isGrounded) canJump = false;
     animation.Update(row, deltaTime,faceRight);
     mBody.setTextureRect(animation.uvRect);
+
+    camera.position.y = mBody.getPosition().y -250.0f;
+
+
+    // don't move camera, if player hits certain y change to that y section
+    // add camera and position adjuster when you change the screen size
+
 }
 
 void Player::Draw(sf::RenderWindow &window) {
@@ -69,4 +81,6 @@ void Player::OnCollision(sf::Vector2f direction) {
 
     }
     else if (direction.y>0.0f) velocity.y=0.0f;
+
+
 }

@@ -7,6 +7,9 @@
 
 #include "GameObject.h"
 #include "Animation.h"
+#include "Camera.h"
+
+extern Camera camera;
 
 class Player : public GameObject {
 public:
