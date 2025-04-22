@@ -31,7 +31,7 @@ int main()
 
 
     sf::Texture blueBrick;
-    if (!blueBrick.loadFromFile("assets/images/blue.png")) {
+    if (!blueBrick.loadFromFile("assets/images/greyV4.png")) {
         std::cerr << "Failed to load brick texture!" << std::endl;
         return -1;
     }
