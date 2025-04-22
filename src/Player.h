@@ -20,11 +20,12 @@ public:
     void Draw(sf::RenderWindow& window) override;
     void OnCollision(sf::Vector2f direction);
     Collider* GetCollider(){return new Collider(mBody);}
+    sf::Vector2f pos;
 
 private:
     sf::RectangleShape mBody;
     float mSpeed;
-    sf::Vector2f pos;
+
     bool canJump;
     float jumpHeight;
     sf::Vector2f velocity;

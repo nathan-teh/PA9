@@ -14,6 +14,19 @@
 
 int main()
 {
+    sf::Texture backgroundTexture;
+    if (!backgroundTexture.loadFromFile("assets/images/frame.png")) {
+        std::cerr << "Failed to load player texture!\n";
+    }
+
+    sf::Sprite backgroundSprite(backgroundTexture);
+
+    float scaleX = (1450.0F) / backgroundTexture.getSize().x;
+    float scaleY = 10450.0F / backgroundTexture.getSize().y;
+    backgroundSprite.setScale(sf::Vector2f(scaleX, scaleY));
+
+
+
     Map mapp;
     auto window = sf::RenderWindow(sf::VideoMode({1280u, 720u}), "CMake SFML Project");
     window.setFramerateLimit(60);
@@ -30,28 +43,28 @@ int main()
     //std::vector<Platform*> platforms; // vector of Platform pointers
 
 
-    sf::Texture blueBrick;
-    if (!blueBrick.loadFromFile("assets/images/greyV4.png")) {
+    sf::Texture brownBrick;
+    if (!brownBrick.loadFromFile("assets/images/brownV3.png")) {
         std::cerr << "Failed to load brick texture!" << std::endl;
         return -1;
     }
-    sf::Texture greenBrick;
-    if (!greenBrick.loadFromFile("assets/images/green.png")) {
+    sf::Texture brokenBrick;
+    if (!brokenBrick.loadFromFile("assets/images/bb4.png")) {
         std::cerr << "Failed to load brick texture!" << std::endl;
         return -1;
     }
-    sf::Texture yellowBrick;
-    if (!yellowBrick.loadFromFile("assets/images/yellow.png")) {
+    sf::Texture wood;
+    if (!wood.loadFromFile("assets/images/woody.png")) {
         std::cerr << "Failed to load brick texture!" << std::endl;
         return -1;
     }
-    sf::Texture purpleBrick;
-    if (!purpleBrick.loadFromFile("assets/images/purple.png")) {
+    sf::Texture greyBrick;
+    if (!greyBrick.loadFromFile("assets/images/fullBrick.png")) {
         std::cerr << "Failed to load brick texture!" << std::endl;
         return -1;
     }
-    sf::Texture lightblueBrick;
-    if (!lightblueBrick.loadFromFile("assets/images/lightBlue.png")) {
+    sf::Texture emptyBrick;
+    if (!emptyBrick.loadFromFile("assets/images/partialBrick.png")) {
         std::cerr << "Failed to load brick texture!" << std::endl;
         return -1;
     }
@@ -65,7 +78,7 @@ int main()
     Map map(50.f);
 
     // pass in a vector instead!!
-    map.loadMap(platforms, blueBrick, lightblueBrick, greenBrick, yellowBrick, purpleBrick, pos);
+    map.loadMap(platforms, brownBrick, brokenBrick, wood, greyBrick, emptyBrick, pos);
 
 
     std::cout << "FOUND " << pos.x << " " << pos.y << std::endl;
@@ -81,9 +94,9 @@ int main()
     sf::Font font("assets/images/Jersey15-Regular.ttf");
     sf::Text elevation(font);
     elevation.setString("Elevation: ");
-    elevation.setCharacterSize(70);
+    elevation.setCharacterSize(30);
     elevation.setFillColor(sf::Color::White);
-    elevation.setPosition({400, 9300});
+    elevation.setPosition({50, 50});
         //{window.getSize().x / 10.0f, window.getSize().y / 10.0f});
 
 
@@ -111,8 +124,12 @@ int main()
 
         }
 
+
         window.clear();
         window.setView(camera.GetView(window.getSize()));
+        window.draw(backgroundSprite);
+
+
 
 
         camera.position.x = window.getSize().x / 2.0f;
@@ -120,6 +137,7 @@ int main()
         for (auto& platform : platforms) {
             platform->Draw(window);
         }
+        window.setView(window.getDefaultView());
         window.draw(elevation);
         window.display();
     }
