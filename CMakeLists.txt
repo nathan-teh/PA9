@@ -35,3 +35,7 @@ add_executable(main
 target_compile_features(main PRIVATE cxx_std_17)
 target_link_libraries(main PRIVATE SFML::Graphics)
 target_link_libraries(main PRIVATE SFML::Audio)
+# For MSVC (Windows), link the ws2_32 library
+if(MSVC)
+    target_link_libraries(main PRIVATE ws2_32)
+endif()

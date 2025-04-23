@@ -16,7 +16,7 @@ class Player : public GameObject {
 public:
     Player(sf::Texture *texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f pos, float speed,
            float jumpHeight, sf::Vector2f size, sf::Vector2f collisionSize);
-    ~Player() {}
+    ~Player();
     sf::Vector2f GetPosition() const override {return pos;}
     void Update(float deltaTime, float& playerY);
     void Draw(sf::RenderWindow& window) override;

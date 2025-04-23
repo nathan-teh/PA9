@@ -86,14 +86,17 @@ void testMusicLoadToFile(std::ostream& out) {
 // Makes sure camera centers correctly on the x-axis when GetView is called.
 //
 void testCameraPositioningToFile(std::ostream& out) {
-    camera.position.x = 0;
-    sf::Vector2u windowSize = { 1280, 720 };
+    Camera testCamera(1000); // Create a local camera with known zoom
+    testCamera.position = sf::Vector2f(0.f, 0.f); // Safe default position
 
-    camera.GetView(windowSize);
-    if (camera.position.x == windowSize.x / 2.0f)
+    sf::Vector2u windowSize = { 1280, 720 };
+    sf::View view = testCamera.GetView(windowSize);
+
+    // Check if the center x is correctly 0 (because position.x = 0)
+    if (view.getCenter().x == testCamera.position.x)
         out << "PASS: Camera centered correctly.\n";
     else
-        out << "PASS: Camera not centered completely correctly.\n";
+        out << "FAIL: Camera not centered completely correctly.\n";
 }
 
 //
