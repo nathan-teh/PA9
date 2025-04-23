@@ -43,7 +43,7 @@ int main()
 
 
     Map mapp;
-    auto window = sf::RenderWindow(sf::VideoMode({1280u, 720u}), "YO-HO JUMP");
+    auto window = sf::RenderWindow(sf::VideoMode({1280u, 720u}), "CMake SFML Project");
     window.setFramerateLimit(60);
     sf::Texture playerTexture;
     sf::Texture titleTexture;
