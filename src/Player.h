@@ -19,7 +19,7 @@ public:
            float jumpHeight, sf::Vector2f size, sf::Vector2f collisionSize);
     ~Player() {}
     sf::Vector2f GetPosition() const override {return pos;}
-    void Update(float deltaTime) override;
+    void Update(float deltaTime, float& playerY);
     void Draw(sf::RenderWindow& window) override;
     void OnCollision(sf::Vector2f direction);
     Collider* GetCollider() override {return new Collider(collisionBox);}

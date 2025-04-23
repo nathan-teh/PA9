@@ -35,7 +35,7 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 }
 
 
-void Player::Update(float deltaTime){
+void Player::Update(float deltaTime, float& playerY){
     velocity.x=0.0f;
     isGrounded = false;
 
@@ -69,6 +69,7 @@ void Player::Update(float deltaTime){
 
     camera.position.y = mBody.getPosition().y -250.0f;
 
+    playerY = mBody.getPosition().y;
     if (mBody.getPosition().y <= 1790.0 && !playedVictory) {
         victoryMusic.play();
         playedVictory = true;

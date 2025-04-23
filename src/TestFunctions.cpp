@@ -103,31 +103,32 @@ void testCameraPositioningToFile(std::ostream& out) {
 // Applies Update() ( no input ) and checks that velocity.y increases.
 //
 void testGravityToFile(std::ostream& out) {
-
     sf::Texture dummyTexture;
     if (!dummyTexture.loadFromFile("assets/images/brownV3.png")) {
         out << "FAIL: Dummy texture failed to load for gravity test.\n";
         return;
     }
-    Player player(&dummyTexture, sf::Vector2u(0, 0), 0.3f, sf::Vector2f(100.f, 100.f), 0.0f, 0.0f, sf::Vector2f(0.f, 0.f), sf::Vector2f(0.f, 0.f)); // Default values for complete constructor
 
-    float dummyY = 0.0f;
+    Player player(&dummyTexture, sf::Vector2u(1, 1), 0.3f, sf::Vector2f(100.f, 100.f),
+        0.0f, 0.0f, sf::Vector2f(50.f, 50.f), sf::Vector2f(40.f, 40.f));
 
-    // Capture starting Y position
-    float initialY = dummyY;
-    player.Update(0);
-    // Capture position after 1st update
-    float afterFirstUpdateY = player.getPosY();
+    float playerY = player.getPosY();
 
-    player.Update(5);
+    float deltaTime1 = 0.016f; // Simulate ~1 frame at 60fps
+    float deltaTime2 = 0.5f;   // Simulate a larger update
 
-    // Capture position after 2nd update
-    float afterSecondUpdateY = player.getPosY();
+    float beforeUpdateY = playerY;
 
-    if (afterFirstUpdateY > initialY && afterSecondUpdateY > afterFirstUpdateY)
-        out << "PASS: Gravity correctly increases vertical velocity and position.\n";
+    player.Update(deltaTime1, playerY);
+    float afterFirstUpdateY = playerY;
+
+    player.Update(deltaTime2, playerY);
+    float afterSecondUpdateY = playerY;
+
+    if (afterFirstUpdateY > beforeUpdateY && afterSecondUpdateY > afterFirstUpdateY)
+        out << "PASS: Gravity correctly applied and Y position increased.\n";
     else
-        out << "FAIL: Gravity not applied correctly (Y did not increase).\n";
+        out << "FAIL: Gravity not applied correctly (Y position did not increase).\n";
 }
 
 //

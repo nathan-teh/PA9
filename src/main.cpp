@@ -155,16 +155,14 @@ int main()
         //{window.getSize().x / 10.0f, window.getSize().y / 10.0f});
 
 
-
-    //Player user(&playerTexture, pos, 165            ,215);
+    //Player user(&playerTexture, pos, 165,215);
     auto player = std::make_unique<Player>(&playerTexture, sf::Vector2u(4, 5), 0.1f,pos, 200,215, size, collisionSize);
     Player* user = player.get(); // safe reference
     objects.push_back(std::move(player));
 
     float deltaTime = 0.0f;
-
-
-
+    float playerY;
+    int startingAltitude = pos.y;
 
     mainMenuMusic.setVolume(20);
     mainMenuMusic.play();
@@ -275,7 +273,7 @@ int main()
             sf::Vector2f direction;
 
             for (auto& obj : objects)
-                obj->Update(deltaTime);
+                obj->Update(deltaTime, playerY);
 
             for (const auto& obj : objects) {
                 if (obj->IsPlatform()) {
@@ -293,6 +291,9 @@ int main()
             user->Draw(window);
             camera.position.x = window.getSize().x / 2.0f;
             window.setView(window.getDefaultView());
+            int rawAltitude = static_cast<int>(startingAltitude - playerY);
+            int realAltitude = std::max(0, rawAltitude);
+            elevation.setString("Altitude: " + std::to_string(realAltitude));
             window.draw(elevation);
         }
         window.display();
