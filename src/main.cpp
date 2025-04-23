@@ -14,6 +14,8 @@
     4/21: connected main menu, transition screen and added jump sound to gameplay code (based off secondBranch)
     4/22: pulled updatedMap, adjusted some values to make program functional, added victory sound, fixed bug
           where duck moves if user moves window for better visiblity
+
+          - Added new main menu music after thinking about song choice; added gameplay music
 */
 
 enum class GameState {
@@ -46,8 +48,8 @@ int main()
         std::cerr << "Failed to load background image!\n";
         return -1;
     }
-    sf::Music mainMenu;
-    if (!mainMenu.openFromFile("assets/sounds/Main_Menu_PA9.ogg")) {
+    sf::Music mainMenuMusic;
+    if (!mainMenuMusic.openFromFile("assets/sounds/Main_Menu.ogg")) {
         std::cerr << "Failed to load music!\n";
         return -1;
     }
@@ -95,6 +97,10 @@ int main()
         std::cerr << "Failed to load brick texture!" << std::endl;
         return -1;
     }
+    sf::Music gameplayMusic;
+    if (!gameplayMusic.openFromFile("assets/sounds/Play_Music.ogg")) {
+        std::cerr << "Failed to load gameplay music!" << std::endl;
+    }
 
     std::cout << "INITIAL " << pos.x << " " << pos.y << std::endl;
 
@@ -130,7 +136,8 @@ int main()
 
     Player user(&playerTexture, pos, 250, 215);
 
-    mainMenu.play();
+    mainMenuMusic.setVolume(20);
+    mainMenuMusic.play();
 
     sf::Sprite duckSprite(playerTexture);
     duckSprite.setScale(Vector2f(0.3f, 0.3f));
@@ -164,7 +171,6 @@ int main()
     Begin(window);
     while (window.isOpen())
     {
-
         float deltaTime = deltaClock.restart().asSeconds();
 
         // DO NOT REMOVE (fixes bug where duck moves when window moves)
@@ -176,7 +182,8 @@ int main()
         {
             if (event->is<sf::Event::Closed>())
             {
-                mainMenu.stop();
+                mainMenuMusic.stop();
+                gameplayMusic.stop();
                 window.close();
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) window.close();
@@ -209,7 +216,7 @@ int main()
         // --- TRANSITION SCENE ---
         else if (currentState == GameState::TransitionScene)
         {
-            mainMenu.stop();
+            mainMenuMusic.stop();
             if (!transitionStarted) {
                 transitionClock.restart();
                 transitionStarted = true;
@@ -230,6 +237,10 @@ int main()
         }
         else if (currentState == GameState::Gameplay)
         {
+            if (gameplayMusic.getStatus() != sf::Music::Status::Playing)
+            {
+                gameplayMusic.play();
+            }
             user.Update(deltaTime);
             sf::Vector2f direction;
 
