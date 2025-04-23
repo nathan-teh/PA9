@@ -51,13 +51,13 @@ void Player::Update(float deltaTime, float& playerY){
         camera.position.y = mBody.getPosition().y -325.0f;
     // }
 
-    // if (camera.position.y < )
-    //
-    // else if (camera.position.y < 9430) {
+   //if (camera.position.y > 9433) {
+   // camera.position.y = 10330.0;
+  // } //else if (camera.position.y > 9430) {
     //     camera.position.y = 9425;
-    // }
+    // } //else if (camera.positon.y )
 
-    // if (mBody.getPosition().y < 4130) {
+    //if (mBody.getPosition().y < 4130) {
     //     //camera.position.y = mBody.getPosition().y -325.0f;
     // } else if (camera.position.y < 4980) {
     //     camera.position.y = 4975;
