@@ -9,7 +9,6 @@
 #include "Animation.h"
 #include <SFML/Audio.hpp>
 #include <SFML/Audio/Sound.hpp>
-#include "Character.h"
 #include "Camera.h"
 
 extern Camera camera;

@@ -58,9 +58,13 @@ int main()
         std::cerr << "Failed to load font\n";
         return -1;
     }
+    sf::Texture playerTexture2;
 
-
-    if (!playerTexture.loadFromFile("assets/images/Goose_v2.PNG")) {
+    if (!playerTexture2.loadFromFile("assets/images/Goose_v2.png")) {
+        std::cerr << "Failed to load player texture!\n";
+        return -1; // or handle error appropriately
+    }
+    if (!playerTexture.loadFromFile("assets/images/Duck_Sprite_Sheet.png")) {
         std::cerr << "Failed to load player texture!\n";
         return -1; // or handle error appropriately
     }
@@ -157,7 +161,7 @@ int main()
     mainMenuMusic.setVolume(20);
     mainMenuMusic.play();
 
-    sf::Sprite duckSprite(playerTexture);
+    sf::Sprite duckSprite(playerTexture2);
     duckSprite.setScale(Vector2f(0.3f, 0.3f));
     duckSprite.setPosition(Vector2f(250.f, 250.f));
 
@@ -191,10 +195,8 @@ int main()
         deltaTime = deltaClock.restart().asSeconds();
 
         // DO NOT REMOVE (fixes bug where duck moves when window moves)
-        if (deltaTime > 0.05f)
-        {
-            deltaTime = 0.05f;
-        }
+        if (deltaTime > 0.05f) deltaTime = 0.05f;
+
         while (const std::optional event = window.pollEvent())
         {
             if (event->is<sf::Event::Closed>())
@@ -206,25 +208,8 @@ int main()
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) window.close();
         }
 
-        for (auto& obj : objects)
-            obj->Update(deltaTime);
 
-        sf::Vector2f direction;
-        for (const auto& obj : objects) {
-            if (obj->IsPlatform()) {
-                if (obj->GetCollider()->checkCollision(*user->GetCollider(), direction, 1.0f))
-                    user->OnCollision(direction);
-            }
-        }
         window.clear();
-        window.setView(camera.GetView(window.getSize()));
-        window.draw(backgroundSprite);
-
-        int x=0;
-        for (auto& obj : objects)
-            obj->Draw(window);
-
-
 
         camera.position.x = window.getSize().x / 2.0f;
         window.setView(window.getDefaultView());
@@ -234,6 +219,7 @@ int main()
         // --- MAIN MENU ---
         if (currentState == GameState::MainMenu)
         {
+            window.setView(window.getDefaultView());
             if (button.isMouseOverButton(window))
             {
                 button.setFillColor(sf::Color(85, 245, 71));
@@ -243,10 +229,7 @@ int main()
                     currentState = GameState::TransitionScene;  // Transition to next screen
                 }
             }
-            else
-            {
-                button.setFillColor(sf::Color(33, 122, 24));
-            }
+            else button.setFillColor(sf::Color(33, 122, 24));
 
             window.draw(bgMainMenu);
             window.draw(duckSprite);
@@ -264,6 +247,8 @@ int main()
                 transitionStarted = true;
             }
 
+            window.setView(window.getDefaultView());
+
             window.clear(sf::Color::Black);
 
             sf::Text transitionText(mainMenuFont);
@@ -273,34 +258,32 @@ int main()
             transitionText.setPosition(Vector2f(480.0f, 330.0f));
             window.draw(transitionText);
 
-            if (transitionClock.getElapsedTime().asSeconds() > 5.0f) {
-                currentState = GameState::Gameplay;
-            }
+            if (transitionClock.getElapsedTime().asSeconds() > 5.0f) currentState = GameState::Gameplay;
         }
         else if (currentState == GameState::Gameplay)
         {
-            if (gameplayMusic.getStatus() != sf::Music::Status::Playing)
-            {
-                gameplayMusic.play();
-            }
-            user.Update(deltaTime);
+            if (gameplayMusic.getStatus() != sf::Music::Status::Playing) gameplayMusic.play();
+            //user->Update(deltaTime);
             sf::Vector2f direction;
 
-            for (auto& platform : platforms) {
-                if (platform->GetCollider()->checkCollision(*user.GetCollider(), direction, 1.0f))
-                    user.OnCollision(direction);
+            for (auto& obj : objects)
+                obj->Update(deltaTime);
 
+            for (const auto& obj : objects) {
+                if (obj->IsPlatform()) {
+                    if (obj->GetCollider()->checkCollision(*user->GetCollider(), direction, 1.0f))
+                        user->OnCollision(direction);
+                }
             }
-
-
             window.clear();
             window.setView(camera.GetView(window.getSize()));
             window.draw(backgroundSprite);
+
+
+            for (auto& obj : objects)
+                obj->Draw(window);
+            user->Draw(window);
             camera.position.x = window.getSize().x / 2.0f;
-            user.Draw(window);
-            for (auto& platform : platforms) {
-                platform->Draw(window);
-            }
             window.setView(window.getDefaultView());
             window.draw(elevation);
         }
