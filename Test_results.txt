@@ -3,4 +3,4 @@ PASS: Map loaded with platforms.
 PASS: Collision detected correctly.
 PASS: Music loaded successfully.
 PASS: Camera not centered completely correctly.
-FAIL: Gravity not applied correctly (Y did not increase).
+PASS: Gravity correctly increases vertical velocity and position.
