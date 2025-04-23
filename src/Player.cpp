@@ -83,16 +83,16 @@ void Player::Update(float deltaTime){
         camera.position.y = 7285;
     } else if (mBody.getPosition().y > 6010) {
         camera.position.y = 6385;
-    } else if (mBody.getPosition().y > 5155) {
-        camera.position.y = 5485;
-    } else if (mBody.getPosition().y > 4300) {
-        camera.position.y = 4585;
-    } else if (mBody.getPosition().y > 3445) {
-        camera.position.y = 3685;
-    } else if (mBody.getPosition().y > 2590) {
-        camera.position.y = 2785;
-    } else if (mBody.getPosition().y > 1735) {
-        camera.position.y = 1885;
+    } else if (mBody.getPosition().y > 4980) {
+        camera.position.y = 4875;
+    } else if (mBody.getPosition().y > 4125) {
+        camera.position.y = 3975;//4585;
+    } else if (mBody.getPosition().y > 3270) {
+        camera.position.y = 3075;//3685;
+    } else if (mBody.getPosition().y > 2415) {
+        camera.position.y = 2175;//2785;
+    } else if (mBody.getPosition().y > 1560) {
+        camera.position.y = 1275;//1885;
     }
 
 
