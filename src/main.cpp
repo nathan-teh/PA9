@@ -8,6 +8,7 @@
 #include "Camera.h"
 #include "Button.hpp"
 #include "Map.h"
+#include "TestFunctions.h"
 
 /*
     Changes by Tifanie Ngo
@@ -26,6 +27,7 @@ enum class GameState {
 
 int main()
 {
+    runAllTestsToFile();
     sf::Texture backgroundTexture;
     if (!backgroundTexture.loadFromFile("assets/images/frame.png")) {
         std::cerr << "Failed to load player texture!\n";
@@ -122,7 +124,6 @@ int main()
 
 
 
-    std::vector<std::unique_ptr<Platform>> platforms;
     Map map(50.f);
 
     // pass in a vector instead!!

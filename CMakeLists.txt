@@ -27,6 +27,10 @@ add_executable(main
         src/Camera.cpp
         src/Camera.h
         src/Button.hpp
+        src/TestFunctions.cpp
+        src/TestFunctions.h
+        src/Music.cpp
+        src/Music.h
 )
 target_compile_features(main PRIVATE cxx_std_17)
 target_link_libraries(main PRIVATE SFML::Graphics)

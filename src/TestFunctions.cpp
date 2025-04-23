@@ -20,7 +20,7 @@ Isaac Bermudez
 // Uses dummy textures and checks if the resulting vector is not empty.
 //
 void testMapLoadToFile(std::ostream& out) {
-    std::vector<std::unique_ptr<Platform>> platforms;
+    std::vector<std::unique_ptr<GameObject>> objects;
     Map map(50.f);
 
     sf::Texture dummy;
@@ -30,9 +30,9 @@ void testMapLoadToFile(std::ostream& out) {
     }
 
     sf::Vector2f testPos;
-    map.loadMap(platforms, dummy, dummy, dummy, dummy, dummy, testPos);
+    map.loadMap(objects, dummy, dummy, dummy, dummy, dummy, testPos);
 
-    if (!platforms.empty())
+    if (!objects.empty())
         out << "PASS: Map loaded with platforms.\n";
     else
         out << "FAIL: No platforms loaded from map.\n";
@@ -51,7 +51,7 @@ void testCollisionDetectionToFile(std::ostream& out) {
         return;
     }
 
-    Player player(&texture, { 100, 100 }, 50, 50);
+    Player player(&texture, sf::Vector2u(1, 1), 0.3f, sf::Vector2f(100.f, 100.f), 200.0f, 200.0f, sf::Vector2f(50.f, 50.f), sf::Vector2f(40.f, 40.f));
     Platform platform(&texture, { 100, 100 }, { 50, 50 });
 
     sf::Vector2f direction;
@@ -62,8 +62,7 @@ void testCollisionDetectionToFile(std::ostream& out) {
     else
         out << "FAIL: Collision not detected.\n";
 
-    delete player.GetCollider();
-    delete platform.GetCollider();
+
 }
 
 //
@@ -104,28 +103,28 @@ void testCameraPositioningToFile(std::ostream& out) {
 // Applies Update() ( no input ) and checks that velocity.y increases.
 //
 void testGravityToFile(std::ostream& out) {
+
     sf::Texture dummyTexture;
     if (!dummyTexture.loadFromFile("assets/images/brownV3.png")) {
         out << "FAIL: Dummy texture failed to load for gravity test.\n";
         return;
     }
-
-    Player player(&dummyTexture, { 100, 100 }, 0.f, 0.f); // No horizontal movement or jump strength
+    Player player(&dummyTexture, sf::Vector2u(0, 0), 0.3f, sf::Vector2f(0.f, 0.f), 0.0f, 0.0f, sf::Vector2f(50.f, 50.f), sf::Vector2f(40.f, 40.f)); // Default values for complete constructor
 
     float dummyY = 0.0f;
     float deltaTime = 0.1f;
 
     // Capture starting Y position
     float initialY = dummyY;
-    player.Update(deltaTime, dummyY);
+    player.Update(deltaTime);
 
     // Capture position after 1st update
-    float afterFirstUpdateY = dummyY;
+    float afterFirstUpdateY = player.getPosY();
 
-    player.Update(deltaTime, dummyY);
+    player.Update(deltaTime);
 
     // Capture position after 2nd update
-    float afterSecondUpdateY = dummyY;
+    float afterSecondUpdateY = player.getPosY();
 
     if (afterFirstUpdateY > initialY && afterSecondUpdateY > afterFirstUpdateY)
         out << "PASS: Gravity correctly increases vertical velocity and position.\n";

@@ -24,6 +24,7 @@ public:
     void OnCollision(sf::Vector2f direction);
     Collider* GetCollider() override {return new Collider(collisionBox);}
     bool IsPlatform() const override { return false; }
+    float getPosY() {return pos.y;}
 
 
 private:
