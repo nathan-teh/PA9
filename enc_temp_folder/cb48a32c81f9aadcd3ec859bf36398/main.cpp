@@ -1,5 +1,5 @@
-#include <SFML/Graphics.hpp>
-
+#include "Game.h"
+#include "Character.h"
 #include "Player.h"
 #include <iostream>
 #include <vector>
@@ -14,8 +14,6 @@
     4/21: connected main menu, transition screen and added jump sound to gameplay code (based off secondBranch)
     4/22: pulled updatedMap, adjusted some values to make program functional, added victory sound, fixed bug
           where duck moves if user moves window for better visiblity
-
-          - Added new main menu music after thinking about song choice; added gameplay music
 */
 
 enum class GameState {
@@ -40,7 +38,7 @@ int main()
 
 
     Map mapp;
-    auto window = sf::RenderWindow(sf::VideoMode({1280u, 720u}), "CMake SFML Project");
+    auto window = sf::RenderWindow(sf::VideoMode({ 1280u, 720u }), "YO-HO JUMP");
     window.setFramerateLimit(60);
     sf::Texture playerTexture;
     sf::Texture titleTexture;
@@ -63,24 +61,13 @@ int main()
     if (!playerTexture.loadFromFile("assets/images/Goose_v2.PNG")) {
         std::cerr << "Failed to load player texture!\n";
         return -1; // or handle error appropriately
-    }
-    sf::Vector2f collisionSize = {30.0f,100.0f};
-    sf::Clock deltaClock;
-    sf::Vector2f pos(600,300);
-    //std::vector<GameObject*> objects;
-    std::vector<std::unique_ptr<GameObject>> objects;
+    }    sf::Clock deltaClock;
+    sf::Vector2f pos{}; // set this to   // GET IMAGE SIZE
 
-    sf::Vector2f size(96,100); //character size keep aspect ratio
-    //objects.push_back(&platform1);
-    //objects.push_back(&platform2);
-    //objects.push_back(&platform3);
-
-    //sf::Vector2f pos{}; // set this to   // GET IMAGE SIZE
-
-   // camera.position = pos;//sf::Vector2f({400,800});
+    // camera.position = pos;//sf::Vector2f({400,800});
 
 
-    //std::vector<Platform*> platforms; // vector of Platform pointers
+     //std::vector<Platform*> platforms; // vector of Platform pointers
 
 
     sf::Texture brownBrick;
@@ -122,11 +109,12 @@ int main()
     Map map(50.f);
 
     // pass in a vector instead!!
-    map.loadMap(objects, brownBrick, brokenBrick, wood, greyBrick, emptyBrick, pos);
-    //auto user = std::make_unique<Player>(&playerTexture, sf::Vector2u(4, 5), 0.1f,pos, 200,100, size, collisionSize); //can change jump height/speed
+    map.loadMap(platforms, brownBrick, brokenBrick, wood, greyBrick, emptyBrick, pos);
 
 
     std::cout << "FOUND " << pos.x << " " << pos.y << std::endl;
+
+    //pos.y = pos.y + 50.f;
 
     //Platform platform1(nullptr,sf::Vector2f(400.0f,200.0f),(sf::Vector2f(640.0f,500)));
    // Platform platform2(nullptr,sf::Vector2f(400.0f,100.0f),(sf::Vector2f(250.0f,400)));
@@ -139,20 +127,12 @@ int main()
     elevation.setString("Elevation: ");
     elevation.setCharacterSize(30);
     elevation.setFillColor(sf::Color::White);
-    elevation.setPosition({50, 50});
-        //{window.getSize().x / 10.0f, window.getSize().y / 10.0f});
+    elevation.setPosition({ 50, 50 });
+    //{window.getSize().x / 10.0f, window.getSize().y / 10.0f});
 
 
 
-    //Player user(&playerTexture, pos, 165            ,215);
-    auto player = std::make_unique<Player>(&playerTexture, sf::Vector2u(4, 5), 0.1f,pos, 200,215, size, collisionSize);
-    Player* user = player.get(); // safe reference
-    objects.push_back(std::move(player));
-
-    float deltaTime = 0.0f;
-
-
-
+    Player user(&playerTexture, pos, 250, 215);
 
     mainMenuMusic.setVolume(20);
     mainMenuMusic.play();
@@ -186,9 +166,10 @@ int main()
     sf::Clock transitionClock;
     bool transitionStarted = false;
 
+    Begin(window);
     while (window.isOpen())
     {
-        deltaTime = deltaClock.restart().asSeconds();
+        float deltaTime = deltaClock.restart().asSeconds();
 
         // DO NOT REMOVE (fixes bug where duck moves when window moves)
         if (deltaTime > 0.05f)
@@ -205,31 +186,6 @@ int main()
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) window.close();
         }
-
-        for (auto& obj : objects)
-            obj->Update(deltaTime);
-
-        sf::Vector2f direction;
-        for (const auto& obj : objects) {
-            if (obj->IsPlatform()) {
-                if (obj->GetCollider()->checkCollision(*user->GetCollider(), direction, 1.0f))
-                    user->OnCollision(direction);
-            }
-        }
-        window.clear();
-        window.setView(camera.GetView(window.getSize()));
-        window.draw(backgroundSprite);
-
-        int x=0;
-        for (auto& obj : objects)
-            obj->Draw(window);
-
-
-
-        camera.position.x = window.getSize().x / 2.0f;
-        window.setView(window.getDefaultView());
-        window.draw(elevation);
-
 
         // --- MAIN MENU ---
         if (currentState == GameState::MainMenu)

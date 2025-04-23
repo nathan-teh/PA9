@@ -7,6 +7,9 @@
 
 #include "GameObject.h"
 #include "Animation.h"
+#include <SFML/Audio.hpp>
+#include <SFML/Audio/Sound.hpp>
+#include "Character.h"
 #include "Camera.h"
 
 extern Camera camera;
@@ -36,6 +39,9 @@ private:
     unsigned int row;
     bool faceRight;
     sf::RectangleShape collisionBox;
+    sf::Music jump;
+    sf::Music victoryMusic;
+    bool playedVictory = false;
 };
 
 
