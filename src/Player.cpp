@@ -3,7 +3,6 @@
 //
 
 #include "Player.h"
-
 #include <iostream>
 
 Camera camera(1000);
@@ -64,7 +63,7 @@ void Player::Update(float deltaTime, float& playerY){
     animation.Update(row, deltaTime,faceRight);
     mBody.setTextureRect(animation.uvRect);
 
-    if (mBody.getPosition().y > 9430) {
+    /*if (mBody.getPosition().y > 9430) {
         camera.position.y = 9985;
     }
     else if (mBody.getPosition().y > 8575) { //8530
@@ -96,8 +95,8 @@ void Player::Update(float deltaTime, float& playerY){
     }
     else {
         camera.position.y = mBody.getPosition().y;
-    }
-
+    }*/
+    camera.position.y = mBody.getPosition().y -250.0f;
     playerY = mBody.getPosition().y;
     if (mBody.getPosition().y <= 1790.0 && !playedVictory) {
         victoryMusic.play();
