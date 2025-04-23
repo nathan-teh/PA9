@@ -22,7 +22,7 @@ Player::Player(const sf::Texture* texture, const sf::Vector2f pos, float speed, 
 Player::~Player() {
 }
 
-void Player::Update(float deltaTime){
+void Player::Update(float deltaTime, float& playerY){
     velocity.x=0.3f;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) velocity.x-=mSpeed;
@@ -38,6 +38,8 @@ void Player::Update(float deltaTime){
     std::cout << mBody.getPosition().x << " " << mBody.getPosition().y << std::endl;
 
     camera.position.y = mBody.getPosition().y -250.0f;
+
+    playerY=mBody.getPosition().y;
 
 
     // don't move camera, if player hits certain y change to that y section

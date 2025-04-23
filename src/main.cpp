@@ -90,19 +90,19 @@ int main()
 
     //platforms.push_back(&platform1);
     //platforms.push_back(&platform2);
+        //{window.getSize().x / 10.0f, window.getSize().y / 10.0f});
 
+    //
+    float playerY;
+
+    Player user(&playerTexture, pos, 165            ,215);
     sf::Font font("assets/images/Jersey15-Regular.ttf");
     sf::Text elevation(font);
-    elevation.setString("Elevation: ");
     elevation.setCharacterSize(30);
     elevation.setFillColor(sf::Color::White);
     elevation.setPosition({50, 50});
-        //{window.getSize().x / 10.0f, window.getSize().y / 10.0f});
-
-
-
-    Player user(&playerTexture, pos, 165            ,215);
     Begin(window);
+
     while (window.isOpen())
     {
 
@@ -115,7 +115,8 @@ int main()
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) window.close();
         }
-        user.Update(deltaTime);
+        user.Update(deltaTime, playerY);
+        elevation.setString("Altitude: " + std::to_string(static_cast<int>(playerY)));
         sf::Vector2f direction;
 
         for (auto& platform : platforms) {
@@ -128,8 +129,6 @@ int main()
         window.clear();
         window.setView(camera.GetView(window.getSize()));
         window.draw(backgroundSprite);
-
-
 
 
         camera.position.x = window.getSize().x / 2.0f;

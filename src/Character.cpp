@@ -4,7 +4,7 @@
 
 #include "Character.h"
 
-void Character::Update(float deltaTime) {
+void Character::Update(float deltaTime, float& playerY) {
     return;
 }
 
