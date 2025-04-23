@@ -37,7 +37,15 @@ void Player::Update(float deltaTime, float& playerY){
 
     std::cout << mBody.getPosition().x << " " << mBody.getPosition().y << std::endl;
 
-    camera.position.y = mBody.getPosition().y -250.0f;
+    if (mBody.getPosition().y) {
+
+
+
+    }
+
+    camera.position.y = mBody.getPosition().y -325.0f;
+
+    //std::cout << camera.position.x << " " << camera.position.y << std::endl;
 
     playerY=mBody.getPosition().y;
 

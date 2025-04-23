@@ -131,7 +131,7 @@ int main()
         window.draw(backgroundSprite);
 
 
-        camera.position.x = window.getSize().x / 2.0f;
+        camera.position.x = window.getSize().x / 1.8;
         user.Draw(window);
         for (auto& platform : platforms) {
             platform->Draw(window);
