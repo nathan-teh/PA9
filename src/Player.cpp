@@ -68,6 +68,12 @@ void Player::Update(float deltaTime){
 
     camera.position.y = mBody.getPosition().y -250.0f;
 
+    //if (camera.position)
+
+
+
+
+
     if (mBody.getPosition().y <= 1790.0 && !playedVictory) {
         victoryMusic.play();
         playedVictory = true;
