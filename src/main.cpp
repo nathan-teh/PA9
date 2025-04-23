@@ -28,7 +28,7 @@ int main()
 
 
     Map mapp;
-    auto window = sf::RenderWindow(sf::VideoMode({1280u, 720u}), "CMake SFML Project");
+    auto window = sf::RenderWindow(sf::VideoMode({1280u, 700u}), "CMake SFML Project");
     window.setFramerateLimit(60);
     sf::Texture playerTexture;
     if (!playerTexture.loadFromFile("assets/images/Goose_v2.PNG")) {
@@ -38,8 +38,6 @@ int main()
     sf::Vector2f pos{}; // set this to   // GET IMAGE SIZE
 
    // camera.position = pos;//sf::Vector2f({400,800});
-
-
     //std::vector<Platform*> platforms; // vector of Platform pointers
 
 

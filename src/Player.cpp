@@ -38,36 +38,53 @@ void Player::Update(float deltaTime, float& playerY){
 
     std::cout << mBody.getPosition().x << " " << mBody.getPosition().y << std::endl;
 
-    if (mBody.getPosition().y) {
+    // if (mBody.getPosition().y) {
+    //
+    //
+    //
+    // }
 
+    // if (mBody.getPosition().y < 9445) {
+    //     camera.position.y = 9430;
+    // } else {
+        camera.position.y = mBody.getPosition().y -325.0f;
+    // }
 
-
+    if (mBody.getPosition().y < 4130) {
+        camera.position.y = mBody.getPosition().y -325.0f;
+    } else if (camera.position.y < 4980) {
+        camera.position.y = 4975;
+    } else if (camera.position.y < 5830) {
+        camera.position.y = 5825;
+    } else if (camera.position.y < 6630) {
+        camera.position.y = 6625;
+    } else if (camera.position.y < 7680) {
+        camera.position.y = 4975;
+    } else if (camera.position.y < 4980) {
+        camera.position.y = 4975;
+    } else if (camera.position.y < 4980) {
+        camera.position.y = 4975;
     }
 
-    //camera.position.y = mBody.getPosition().y -325.0f;
-    const float screenHeight = 900.0f;
-
-
-
-
+    //const float screenHeight = 200.0f;
 
     //std::cout << camera.position.x << " " << camera.position.y << std::endl;
 
     playerY=mBody.getPosition().y;
 
     // Get the Y coordinate of the player
-    float playerY = this->pos.y;
-
-    // Determine what vertical "zone" they’re in
-    int newZone = static_cast<int>(playerY / screenHeight);
-
-    if (newZone != currentZone) {
-        currentZone = newZone;
-
-        // Lock the camera to this vertical zone
-        float camY = (currentZone + 0.5f) * screenHeight;
-        camera.position.y = camY;
-    }
+    // float pY = this->pos.y;
+    //
+    // // Determine what vertical "zone" they’re in
+    // int newZone = static_cast<int>(pY / screenHeight);
+    //
+    // if (newZone != currentZone) {
+    //     currentZone = newZone;
+    //
+    //     // Lock the camera to this vertical zone
+    //     float camY =( (currentZone + 0.5f) * screenHeight) -310;
+    //     camera.position.y = camY;
+    // }
 
 
     // don't move camera, if player hits certain y change to that y section
