@@ -9,6 +9,7 @@
 #include "Button.hpp"
 #include "Map.h"
 #include "TestFunctions.h"
+#include "Music.h""
 
 /*
     Changes by Tifanie Ngo
@@ -50,16 +51,24 @@ int main()
         std::cerr << "Failed to load background image!\n";
         return -1;
     }
-    sf::Music mainMenuMusic;
-    if (!mainMenuMusic.openFromFile("assets/sounds/Main_Menu.ogg")) {
-        std::cerr << "Failed to load music!\n";
+    MusicPlayer mainMenuMusic;
+    if (!mainMenuMusic.load("assets/sounds/Main_Menu.ogg")) {
+        std::cerr << "Failed to load main menu music!\n";
         return -1;
     }
+
+    MusicPlayer gameplayMusic;
+    if (!gameplayMusic.load("assets/sounds/Play_Music.ogg")) {
+        std::cerr << "Failed to load gameplay music!\n";
+        return -1;
+    }
+
     Font mainMenuFont;
     if (!mainMenuFont.openFromFile("assets/images/TheRumIsGone-Wy1nG.ttf")) {
         std::cerr << "Failed to load font\n";
         return -1;
     }
+
     sf::Texture playerTexture2;
 
     if (!playerTexture2.loadFromFile("assets/images/Goose_v2.png")) {
@@ -114,10 +123,8 @@ int main()
         std::cerr << "Failed to load brick texture!" << std::endl;
         return -1;
     }
-    sf::Music gameplayMusic;
-    if (!gameplayMusic.openFromFile("assets/sounds/Play_Music.ogg")) {
-        std::cerr << "Failed to load gameplay music!" << std::endl;
-    }
+
+
 
     //std::cout << "INITIAL " << pos.x << " " << pos.y << std::endl;
 
