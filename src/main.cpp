@@ -95,7 +95,7 @@ int main()
 
     // pass in a vector instead!!
     map.loadMap(objects, brownBrick, brokenBrick, wood, greyBrick, emptyBrick, pos);
-    auto user = std::make_unique<Player>(&playerTexture, sf::Vector2u(4, 5), 0.1f,pos, 200,100, size, collisionSize); //can change jump height/speed
+    //auto user = std::make_unique<Player>(&playerTexture, sf::Vector2u(4, 5), 0.1f,pos, 200,100, size, collisionSize); //can change jump height/speed
 
 
     std::cout << "FOUND " << pos.x << " " << pos.y << std::endl;
@@ -119,7 +119,10 @@ int main()
 
 
     //Player user(&playerTexture, pos, 165            ,215);
-    objects.push_back(std::move(user));
+    auto player = std::make_unique<Player>(&playerTexture, sf::Vector2u(4, 5), 0.1f,pos, 200,100, size, collisionSize);
+    Player* user = player.get(); // safe reference
+    objects.push_back(std::move(player));
+    //objects.push_back(std::move(user));
 
     float deltaTime = 0.0f;
     sf::Clock clock;
