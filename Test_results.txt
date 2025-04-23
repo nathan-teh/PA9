@@ -1,0 +1,6 @@
+==== Game Test Results ====
+PASS: Map loaded with platforms.
+PASS: Collision detected correctly.
+PASS: Music loaded successfully.
+PASS: Camera not centered completely correctly.
+PASS: Gravity correctly increases vertical velocity and position.

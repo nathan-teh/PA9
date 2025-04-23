@@ -9,11 +9,14 @@
 #include "Camera.h"
 #include "Music.h"
 #include "Map.h"
+#include "TestFunctions.h" //**********************************************IMPORTANT FOR TEST
+
 
 
 
 int main()
 {
+    runAllTestsToFile(); //**********************************************IMPORTANT FOR TEST
 
     // Create the music player
     MusicPlayer backgroundMusic;

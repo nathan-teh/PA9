@@ -23,6 +23,7 @@ public:
     sf::Vector2f pos;
 
 private:
+
     sf::RectangleShape mBody;
     float mSpeed;
 
