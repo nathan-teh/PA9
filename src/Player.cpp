@@ -43,6 +43,7 @@ void Player::Update(float deltaTime, float& playerY){
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && canJump)
     {
         canJump=false;
+        jump.setVolume(0);
         jump.play();
         velocity.y=-sqrtf(2.0f*981.0f*jumpHeight);
     }
@@ -64,7 +65,6 @@ void Player::Update(float deltaTime, float& playerY){
     animation.Update(row, deltaTime,faceRight);
     mBody.setTextureRect(animation.uvRect);
 
-    /*
     if (mBody.getPosition().y > 9430) {
         camera.position.y = 9985;
     }
@@ -75,31 +75,30 @@ void Player::Update(float deltaTime, float& playerY){
         camera.position.y = 8185;
     }
     else if (mBody.getPosition().y > 6865) {
-        camera.position.y = 7285;
+        camera.position.y = 7285; // change??
     }
-    else if (mBody.getPosition().y > 6010) {
+    else if (mBody.getPosition().y > 5825) {
         camera.position.y = 6385;
     }
-    else if (mBody.getPosition().y > 5155) { //4980
+    else if (mBody.getPosition().y > 4980) { //4980
+        //std::cout << "Change ME" << std::endl;
         camera.position.y = 5485;
     }
-    else if (mBody.getPosition().y > 4125) {
-        camera.position.y = 3975;//4585;
+    else if (mBody.getPosition().y > 4125) { // 4300
+        //std::cout << "I'm HERE" << std::endl;
+        camera.position.y = 4585;           //4585;
     }
     else if (mBody.getPosition().y > 3270) {
-        camera.position.y = 3075;//3685;
+        camera.position.y = 3685;//3685;
     }
     else if (mBody.getPosition().y > 2415) {
-        camera.position.y = 2175;//2785;
+        camera.position.y = 2900;//2785;
     }
     else if (mBody.getPosition().y > 1560) {
-        camera.position.y = 1275;//1885;
+        camera.position.y = 1885;//1885;
     }
-    else {
-        camera.position.y = mBody.getPosition().y;
-    }
-    */
-    camera.position.y = mBody.getPosition().y - 250.0f;
+
+    // camera.position.y = mBody.getPosition().y - 250.0f;
     playerY = mBody.getPosition().y;
     if (mBody.getPosition().y <= 1790.0 && !playedVictory) {
         victoryMusic.play();
