@@ -36,7 +36,8 @@ void Player::Update(float deltaTime, float& playerY){
     velocity.y+=981.0f*deltaTime;
     mBody.move(velocity*deltaTime);
 
-    std::cout << mBody.getPosition().x << " " << mBody.getPosition().y << std::endl;
+    //std::cout << mBody.getPosition().x << " " << mBody.getPosition().y << std::endl;
+    std::cout << "camera: " << camera.position.y << std::endl;
 
     // if (mBody.getPosition().y) {
     //
@@ -50,8 +51,14 @@ void Player::Update(float deltaTime, float& playerY){
         camera.position.y = mBody.getPosition().y -325.0f;
     // }
 
+    // if (camera.position.y < )
+    //
+    // else if (camera.position.y < 9430) {
+    //     camera.position.y = 9425;
+    // }
+
     // if (mBody.getPosition().y < 4130) {
-    //     camera.position.y = mBody.getPosition().y -325.0f;
+    //     //camera.position.y = mBody.getPosition().y -325.0f;
     // } else if (camera.position.y < 4980) {
     //     camera.position.y = 4975;
     // } else if (camera.position.y < 5830) {
@@ -62,10 +69,10 @@ void Player::Update(float deltaTime, float& playerY){
     //     camera.position.y = 4975;
     // } else if (camera.position.y < 8580) {
     //     camera.position.y = 8575;
-    // } else if (camera.position.y < 9840) {
-    //     camera.position.y = 9835;
+    // } else if (camera.position.y < 9430) {
+    //     camera.position.y = 9425;
     // } else {
-
+    //     camera.position.y = mBody.getPosition().y -325.0f;
     // }
 
     //const float screenHeight = 200.0f;
