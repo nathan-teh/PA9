@@ -17,12 +17,14 @@
 
 class Map {
 public:
+
+    // brownBrick, brokenBrick, wood, greyBrick, emptyBrick
     explicit Map(float cellSize = 24.0);
     float cellSize;
     std::vector<std::vector<int>> grid;
     void loadMap(std::vector<std::unique_ptr<Platform>>& platforms,
-                                sf::Texture& blue,sf::Texture& lightBlue, sf::Texture& green,
-                                            sf::Texture& yellow, sf::Texture& purple, sf::Vector2f& playerPos);
+        sf::Texture& brownBrick, sf::Texture& brokenBrick, sf::Texture& wood,
+        sf::Texture& greyBrick, sf::Texture& emptyBrick, sf::Vector2f& playerPos);
 
 };
 

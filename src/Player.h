@@ -6,9 +6,9 @@
 #define PLAYER_H
 
 #include <SFML/Audio.hpp>
+#include <SFML/Audio/Sound.hpp>
 #include "Character.h"
 #include "Camera.h"
-#include <SFML/Audio/Sound.hpp>
 
 extern Camera camera;
 
@@ -21,19 +21,15 @@ public:
     void Update(float deltaTime) override;
     void Draw(sf::RenderWindow& window) override;
     void OnCollision(sf::Vector2f direction);
-    Collider* GetCollider(){return new Collider(mBody);}
+    Collider* GetCollider() { return new Collider(mBody); }
+    sf::Vector2f pos;
 
 private:
     sf::RectangleShape mBody;
     float mSpeed;
-    sf::Vector2f pos;
     bool canJump;
     float jumpHeight;
-    sf::Music music;
     sf::Vector2f velocity;
+    sf::Music jump;
 };
-
-
-
-
 #endif //PLAYER_H
