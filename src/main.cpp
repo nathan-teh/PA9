@@ -184,7 +184,7 @@ int main()
         }
 
         window.clear();
-        camera.position.x = window.getSize().x / 2.0f;
+        camera.position.x = window.getSize().x / 1.8f;
         window.setView(window.getDefaultView());
         window.draw(elevation);
 

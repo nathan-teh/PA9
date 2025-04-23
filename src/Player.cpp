@@ -64,7 +64,39 @@ void Player::Update(float deltaTime, float& playerY){
     animation.Update(row, deltaTime,faceRight);
     mBody.setTextureRect(animation.uvRect);
 
-    camera.position.y = mBody.getPosition().y -250.0f;
+    if (mBody.getPosition().y > 9430) {
+        camera.position.y = 9985;
+    }
+    else if (mBody.getPosition().y > 8575) { //8530
+        camera.position.y = 9085;
+    }
+    else if (mBody.getPosition().y > 7720) { // 855
+        camera.position.y = 8185;
+    }
+    else if (mBody.getPosition().y > 6865) {
+        camera.position.y = 7285;
+    }
+    else if (mBody.getPosition().y > 6010) {
+        camera.position.y = 6385;
+    }
+    else if (mBody.getPosition().y > 5155) { //4980
+        camera.position.y = 5485;
+    }
+    else if (mBody.getPosition().y > 4125) {
+        camera.position.y = 3975;//4585;
+    }
+    else if (mBody.getPosition().y > 3270) {
+        camera.position.y = 3075;//3685;
+    }
+    else if (mBody.getPosition().y > 2415) {
+        camera.position.y = 2175;//2785;
+    }
+    else if (mBody.getPosition().y > 1560) {
+        camera.position.y = 1275;//1885;
+    }
+    else {
+        camera.position.y = mBody.getPosition().y;
+    }
 
     playerY = mBody.getPosition().y;
     if (mBody.getPosition().y <= 1790.0 && !playedVictory) {
