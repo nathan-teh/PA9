@@ -117,7 +117,7 @@ int main()
         std::cerr << "Failed to load gameplay music!" << std::endl;
     }
 
-    std::cout << "INITIAL " << pos.x << " " << pos.y << std::endl;
+    //std::cout << "INITIAL " << pos.x << " " << pos.y << std::endl;
 
 
 
@@ -130,7 +130,7 @@ int main()
     //auto user = std::make_unique<Player>(&playerTexture, sf::Vector2u(4, 5), 0.1f,pos, 200,100, size, collisionSize); //can change jump height/speed
 
 
-    std::cout << "FOUND " << pos.x << " " << pos.y << std::endl;
+    //std::cout << "FOUND " << pos.x << " " << pos.y << std::endl;
 
     //Platform platform1(nullptr,sf::Vector2f(400.0f,200.0f),(sf::Vector2f(640.0f,500)));
    // Platform platform2(nullptr,sf::Vector2f(400.0f,100.0f),(sf::Vector2f(250.0f,400)));

@@ -48,7 +48,7 @@ void Map::loadMap(std::vector<std::unique_ptr<GameObject>> &objects, sf::Texture
             }
             else if (color.r > 200 && color.g > 200 && color.b < 100) {
 
-                std::cout << "Light Blue" << std::endl;
+                //std::cout << "Light Blue" << std::endl;
 
                 objects.push_back(std::make_unique<Platform>(
                     &wood,
