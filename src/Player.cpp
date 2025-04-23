@@ -25,7 +25,7 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
     isGrounded=false;
     row=0;
     faceRight=true;
-    if (!jump.openFromFile("assets/sounds/1457-SE-Stadium-Way.ogg")) {
+    if (!jump.openFromFile("assets/sounds/Sequence-01.ogg")) {
         std::cerr << "Failed to load jump sound!" << std::endl;
     }
     if (!victoryMusic.openFromFile("assets/sounds/Victory_SFX.ogg")) {
@@ -64,6 +64,7 @@ void Player::Update(float deltaTime, float& playerY){
     animation.Update(row, deltaTime,faceRight);
     mBody.setTextureRect(animation.uvRect);
 
+    /*
     if (mBody.getPosition().y > 9430) {
         camera.position.y = 9985;
     }
@@ -97,7 +98,8 @@ void Player::Update(float deltaTime, float& playerY){
     else {
         camera.position.y = mBody.getPosition().y;
     }
-
+    */
+    camera.position.y = mBody.getPosition().y - 250.0f;
     playerY = mBody.getPosition().y;
     if (mBody.getPosition().y <= 1790.0 && !playedVictory) {
         victoryMusic.play();
