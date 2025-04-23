@@ -7,16 +7,27 @@
 #include "Platform.h"
 #include "Collider.h"
 #include "Camera.h"
-
+#include "Music.h"
 #include "Map.h"
 
 
 
 int main()
 {
-    sf::Texture backgroundTexture;
-    if (!backgroundTexture.loadFromFile("assets/images/frame.png")) {
-        std::cerr << "Failed to load player texture!\n";
+
+    // Create the music player
+    MusicPlayer backgroundMusic;
+    // Load the music file
+    if (!backgroundMusic.load("assets/music/Play_Music.ogg")) {
+        std::cerr << "Failed to load background music!" << std::endl;
+    }
+    // Set volume and play it (it will loop)
+    backgroundMusic.setVolume(40.f);
+    backgroundMusic.play();
+
+    sf::Texture backgroundTexture; 
+    if (!backgroundTexture.loadFromFile("assets/images/frame.png")) { 
+        std::cerr << "Failed to load player texture!\n"; 
     }
 
     sf::Sprite backgroundSprite(backgroundTexture);
