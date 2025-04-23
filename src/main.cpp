@@ -9,6 +9,13 @@
 #include "Button.hpp"
 #include "Map.h"
 
+/*
+    Changes by Tifanie Ngo
+    4/21: connected main menu, transition screen and added jump sound to gameplay code (based off secondBranch)
+    4/22: pulled updatedMap, adjusted some values to make program functional, added victory sound, fixed bug
+          where duck moves if user moves window for better visiblity
+*/
+
 enum class GameState {
     MainMenu,
     TransitionScene,
