@@ -31,5 +31,7 @@ private:
     float jumpHeight;
     sf::Vector2f velocity;
     sf::Music jump;
+    sf::Music victoryMusic;
+    bool playedVictory = false;
 };
 #endif //PLAYER_H

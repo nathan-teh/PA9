@@ -159,12 +159,8 @@ int main()
     {
 
         float deltaTime = deltaClock.restart().asSeconds();
+        if (deltaTime > 0.05f) deltaTime = 0.05f;  // ? Clamp
 
-        // DO NOT REMOVE (fixes bug where duck moves when window moves)
-        if (deltaTime > 0.05f)
-        {
-            deltaTime = 0.05f;
-        }
         while (const std::optional event = window.pollEvent())
         {
             if (event->is<sf::Event::Closed>())

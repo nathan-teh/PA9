@@ -19,6 +19,9 @@ Player::Player(const sf::Texture* texture, const sf::Vector2f pos, float speed, 
     if (!jump.openFromFile("assets/sounds/Jump.ogg")) {
         std::cerr << "Failed to load jump sound!" << std::endl;
     }
+    if (!victoryMusic.openFromFile("assets/sounds/Victory_SFX.ogg")) {
+        std::cerr << "Failed to load victory music!" << std::endl;
+    }
 }
 
 Player::~Player() {
@@ -39,13 +42,15 @@ void Player::Update(float deltaTime) {
     mBody.move(velocity * deltaTime);
 
     std::cout << mBody.getPosition().x << " " << mBody.getPosition().y << std::endl;
-
+   
     camera.position.y = mBody.getPosition().y - 250.0f;
-
 
     // don't move camera, if player hits certain y change to that y section
     // add camera and position adjuster when you change the screen size
-
+    if (mBody.getPosition().y <= 1790.0 && !playedVictory) {
+        victoryMusic.play();
+        playedVictory = true;
+    }
 }
 
 void Player::Draw(sf::RenderWindow& window) {
