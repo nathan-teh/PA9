@@ -36,15 +36,11 @@ int main()
         std::cerr << "Failed to load player texture!\n";
         return -1; // or handle error appropriately
     }
-    sf::Vector2f collisionSize = {30.0f,80.0f};
+    sf::Vector2f collisionSize = {30.0f,100.0f};
     sf::Clock deltaClock;
     sf::Vector2f pos(600,300);
     //std::vector<GameObject*> objects;
     std::vector<std::unique_ptr<GameObject>> objects;
-
-    Platform platform1(nullptr,sf::Vector2f(400.0f,200.0f),(sf::Vector2f(640.0f,500)));
-    Platform platform2(nullptr,sf::Vector2f(400.0f,100.0f),(sf::Vector2f(250.0f,400)));
-    Platform platform3(nullptr,sf::Vector2f(400.0f,400.0f),(sf::Vector2f(800.0f,500)));
 
     sf::Vector2f size(96,100); //character size keep aspect ratio
     //objects.push_back(&platform1);
@@ -119,10 +115,9 @@ int main()
 
 
     //Player user(&playerTexture, pos, 165            ,215);
-    auto player = std::make_unique<Player>(&playerTexture, sf::Vector2u(4, 5), 0.1f,pos, 200,100, size, collisionSize);
+    auto player = std::make_unique<Player>(&playerTexture, sf::Vector2u(4, 5), 0.1f,pos, 200,215, size, collisionSize);
     Player* user = player.get(); // safe reference
     objects.push_back(std::move(player));
-    //objects.push_back(std::move(user));
 
     float deltaTime = 0.0f;
     sf::Clock clock;
@@ -134,6 +129,7 @@ int main()
             if (event->is<sf::Event::Closed>()) window.close();
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) window.close();
         }
+
         for (auto& obj : objects)
             obj->Update(deltaTime);
 
@@ -148,6 +144,9 @@ int main()
         window.setView(camera.GetView(window.getSize()));
         window.draw(backgroundSprite);
 
+        int x=0;
+        for (auto& obj : objects)
+            obj->Draw(window);
 
 
 
@@ -155,8 +154,6 @@ int main()
         window.setView(window.getDefaultView());
         window.draw(elevation);
 
-        for (auto& obj : objects) //renders all objects
-            obj->Draw(window);
         window.display();
     }
 }

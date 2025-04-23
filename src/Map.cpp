@@ -25,13 +25,12 @@ void Map::loadMap(std::vector<std::unique_ptr<GameObject>> &objects, sf::Texture
             sf::Color color = image.getPixel({x, y});
 
             if (color == sf::Color::Black) {
-                auto platform = std::make_unique<Platform>(
+                objects.push_back(std::make_unique<Platform>(
                     &brownBrick,
                     sf::Vector2f(cellSize, cellSize),
-                    sf::Vector2f{x * cellSize, y * cellSize}
+                    sf::Vector2f{x * cellSize, y * cellSize})
                 );
 
-                objects.push_back(std::move(platform));
             } else if (color.r > 200 && color.g < 50 && color.b < 50) {
                 //std::cout << "---RED--" << std::endl;
                 playerPos = sf::Vector2f(cellSize * x + cellSize / 2.0F, cellSize * y + cellSize / 2.0F);
@@ -40,46 +39,42 @@ void Map::loadMap(std::vector<std::unique_ptr<GameObject>> &objects, sf::Texture
             else if (color.r < 50 && color.g < 50 && color.b > 150) {
     // BLUE{
 
-                auto platform = std::make_unique<Platform>(
+                objects.push_back(std::make_unique<Platform>(
                     &brokenBrick,
                     sf::Vector2f(cellSize, cellSize),
-                    sf::Vector2f{x * cellSize, y * cellSize}
+                    sf::Vector2f{x * cellSize, y * cellSize})
                 );
 
-                objects.push_back(std::move(platform));
             }
             else if (color.r > 200 && color.g > 200 && color.b < 100) {
 
                 std::cout << "Light Blue" << std::endl;
 
-                auto platform = std::make_unique<Platform>(
+                objects.push_back(std::make_unique<Platform>(
                     &wood,
                     sf::Vector2f(cellSize, cellSize),
-                    sf::Vector2f{x * cellSize, y * cellSize}
+                    sf::Vector2f{x * cellSize, y * cellSize})
                 );
 
-                objects.push_back(std::move(platform));
             }
             else if (color.g > 200 && color.r < 100 && color.b < 100) {
 
-                auto platform = std::make_unique<Platform>(
+                objects.push_back(std::make_unique<Platform>(
                     &greyBrick,
                     sf::Vector2f(cellSize, cellSize),
-                    sf::Vector2f{x * cellSize, y * cellSize}
+                    sf::Vector2f{x * cellSize, y * cellSize})
                 );
 
-                objects.push_back(std::move(platform));
             }
 
             else if (color.r > 200 && color.g > 100 && color.b < 50) {
 
-                auto platform = std::make_unique<Platform>(
+                objects.push_back(std::make_unique<Platform>(
                     &emptyBrick,
                     sf::Vector2f(cellSize, cellSize),
-                    sf::Vector2f{x * cellSize, y * cellSize}
+                    sf::Vector2f{x * cellSize, y * cellSize})
                 );
 
-                objects.push_back(std::move(platform));
             }
         }
     }
