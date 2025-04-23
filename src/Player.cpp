@@ -66,9 +66,44 @@ void Player::Update(float deltaTime){
     animation.Update(row, deltaTime,faceRight);
     mBody.setTextureRect(animation.uvRect);
 
-    camera.position.y = mBody.getPosition().y -250.0f;
+    //camera.position.y = mBody.getPosition().y -250.0f;
 
     //if (camera.position)
+
+    std::cout <<  mBody.getPosition().y << std::endl;
+
+
+    if (mBody.getPosition().y > 9430) {
+        camera.position.y = 9985;
+    } else if (mBody.getPosition().y > 8575) { //8530
+        camera.position.y = 9085;
+    } else if (mBody.getPosition().y > 7720) { // 855
+        camera.position.y = 8185;
+    } else if (mBody.getPosition().y > 6865) {
+        camera.position.y = 7285;
+    } else if (mBody.getPosition().y > 6010) {
+        camera.position.y = 6385;
+    } else if (mBody.getPosition().y > 5155) {
+        camera.position.y = 5485;
+    } else if (mBody.getPosition().y > 4300) {
+        camera.position.y = 4585;
+    } else if (mBody.getPosition().y > 3445) {
+        camera.position.y = 3685;
+    } else if (mBody.getPosition().y > 2590) {
+        camera.position.y = 2785;
+    } else if (mBody.getPosition().y > 1735) {
+        camera.position.y = 1885;
+    }
+
+
+
+
+
+    else {
+        camera.position.y = mBody.getPosition().y;
+    }
+
+        //mBody.setPosition(collisionBox.getPosition());
 
 
 

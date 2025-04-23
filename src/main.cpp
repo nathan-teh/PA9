@@ -211,7 +211,7 @@ int main()
 
         window.clear();
 
-        camera.position.x = window.getSize().x / 2.0f;
+        camera.position.x = window.getSize().x / 1.8f;
         window.setView(window.getDefaultView());
         window.draw(elevation);
 
@@ -283,8 +283,9 @@ int main()
             for (auto& obj : objects)
                 obj->Draw(window);
             user->Draw(window);
-            camera.position.x = window.getSize().x / 2.0f;
+
             window.setView(window.getDefaultView());
+            //camera.position.x = window.getSize().x / 2;
             window.draw(elevation);
         }
         window.display();
