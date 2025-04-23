@@ -31,7 +31,7 @@ void Map::loadMap(std::vector<std::unique_ptr<Platform>> &platforms, sf::Texture
                     sf::Vector2f{x * cellSize, y * cellSize}
                 );
 
-                platforms.push_back(std::move(platform));
+               // platforms.push_back(std::move(platform));
             } else if (color.r > 200 && color.g < 50 && color.b < 50) {
                 //std::cout << "---RED--" << std::endl;
                 playerPos = sf::Vector2f(cellSize * x + cellSize / 2.0F, cellSize * y + cellSize / 2.0F);

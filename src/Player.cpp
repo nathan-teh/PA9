@@ -7,6 +7,7 @@
 #include <iostream>
 
 Camera camera(1000);
+int currentZone = -1;
 
 Player::Player(const sf::Texture* texture, const sf::Vector2f pos, float speed, float jumpHeight): pos(pos) {
     this->mSpeed=speed;
@@ -43,11 +44,30 @@ void Player::Update(float deltaTime, float& playerY){
 
     }
 
-    camera.position.y = mBody.getPosition().y -325.0f;
+    //camera.position.y = mBody.getPosition().y -325.0f;
+    const float screenHeight = 900.0f;
+
+
+
+
 
     //std::cout << camera.position.x << " " << camera.position.y << std::endl;
 
     playerY=mBody.getPosition().y;
+
+    // Get the Y coordinate of the player
+    float playerY = this->pos.y;
+
+    // Determine what vertical "zone" they’re in
+    int newZone = static_cast<int>(playerY / screenHeight);
+
+    if (newZone != currentZone) {
+        currentZone = newZone;
+
+        // Lock the camera to this vertical zone
+        float camY = (currentZone + 0.5f) * screenHeight;
+        camera.position.y = camY;
+    }
 
 
     // don't move camera, if player hits certain y change to that y section
