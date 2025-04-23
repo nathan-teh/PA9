@@ -50,21 +50,23 @@ void Player::Update(float deltaTime, float& playerY){
         camera.position.y = mBody.getPosition().y -325.0f;
     // }
 
-    if (mBody.getPosition().y < 4130) {
-        camera.position.y = mBody.getPosition().y -325.0f;
-    } else if (camera.position.y < 4980) {
-        camera.position.y = 4975;
-    } else if (camera.position.y < 5830) {
-        camera.position.y = 5825;
-    } else if (camera.position.y < 6630) {
-        camera.position.y = 6625;
-    } else if (camera.position.y < 7680) {
-        camera.position.y = 4975;
-    } else if (camera.position.y < 4980) {
-        camera.position.y = 4975;
-    } else if (camera.position.y < 4980) {
-        camera.position.y = 4975;
-    }
+    // if (mBody.getPosition().y < 4130) {
+    //     camera.position.y = mBody.getPosition().y -325.0f;
+    // } else if (camera.position.y < 4980) {
+    //     camera.position.y = 4975;
+    // } else if (camera.position.y < 5830) {
+    //     camera.position.y = 5825;
+    // } else if (camera.position.y < 6630) {
+    //     camera.position.y = 6625;
+    // } else if (camera.position.y < 7680) {
+    //     camera.position.y = 4975;
+    // } else if (camera.position.y < 8580) {
+    //     camera.position.y = 8575;
+    // } else if (camera.position.y < 9840) {
+    //     camera.position.y = 9835;
+    // } else {
+
+    // }
 
     //const float screenHeight = 200.0f;
 
