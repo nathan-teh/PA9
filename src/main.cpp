@@ -132,10 +132,10 @@ int main()
     elevation.setPosition({ 50, 50 });
     //{window.getSize().x / 10.0f, window.getSize().y / 10.0f});
 
-
+    float playerY;
 
     Player user(&playerTexture, pos, 250, 215);
-
+    int startingAltitude = pos.y;
     mainMenuMusic.setVolume(20);
     mainMenuMusic.play();
 
@@ -241,7 +241,10 @@ int main()
             {
                 gameplayMusic.play();
             }
-            user.Update(deltaTime);
+            user.Update(deltaTime, playerY);
+            int rawAltitude = static_cast<int>(startingAltitude - playerY);
+            int realAltitude = std::max(0, rawAltitude);
+            elevation.setString("Altitude: " + std::to_string(realAltitude));
             sf::Vector2f direction;
 
             for (auto& platform : platforms) {

@@ -27,7 +27,7 @@ Player::Player(const sf::Texture* texture, const sf::Vector2f pos, float speed, 
 Player::~Player() {
 }
 
-void Player::Update(float deltaTime) {
+void Player::Update(float deltaTime, float& playerY) {
     velocity.x = 0.3f;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) velocity.x -= mSpeed;
@@ -41,16 +41,71 @@ void Player::Update(float deltaTime) {
     velocity.y += 981.0f * deltaTime;
     mBody.move(velocity * deltaTime);
 
-    std::cout << mBody.getPosition().x << " " << mBody.getPosition().y << std::endl;
-   
-    camera.position.y = mBody.getPosition().y - 250.0f;
+    //std::cout << mBody.getPosition().x << " " << mBody.getPosition().y << std::endl;
+    std::cout << "camera: " << camera.position.y << std::endl;
 
-    // don't move camera, if player hits certain y change to that y section
-    // add camera and position adjuster when you change the screen size
+    // if (mBody.getPosition().y) {
+    //
+    //
+    //
+    // }
+
+    // if (mBody.getPosition().y < 9445) {
+    //     camera.position.y = 9430;
+    // } else {
+    camera.position.y = mBody.getPosition().y - 325.0f;
+    // }
+
+   //if (camera.position.y > 9433) {
+   // camera.position.y = 10330.0;
+  // } //else if (camera.position.y > 9430) {
+    //     camera.position.y = 9425;
+    // } //else if (camera.positon.y )
+
+    //if (mBody.getPosition().y < 4130) {
+    //     //camera.position.y = mBody.getPosition().y -325.0f;
+    // } else if (camera.position.y < 4980) {
+    //     camera.position.y = 4975;
+    // } else if (camera.position.y < 5830) {
+    //     camera.position.y = 5825;
+    // } else if (camera.position.y < 6630) {
+    //     camera.position.y = 6625;
+    // } else if (camera.position.y < 7680) {
+    //     camera.position.y = 4975;
+    // } else if (camera.position.y < 8580) {
+    //     camera.position.y = 8575;
+    // } else if (camera.position.y < 9430) {
+    //     camera.position.y = 9425;
+    // } else {
+    //     camera.position.y = mBody.getPosition().y -325.0f;
+    // }
+
+    //const float screenHeight = 200.0f;
+
+    //std::cout << camera.position.x << " " << camera.position.y << std::endl;
+
+    playerY = mBody.getPosition().y;
     if (mBody.getPosition().y <= 1790.0 && !playedVictory) {
         victoryMusic.play();
         playedVictory = true;
     }
+    // Get the Y coordinate of the player
+    // float pY = this->pos.y;
+    //
+    // // Determine what vertical "zone" they’re in
+    // int newZone = static_cast<int>(pY / screenHeight);
+    //
+    // if (newZone != currentZone) {
+    //     currentZone = newZone;
+    //
+    //     // Lock the camera to this vertical zone
+    //     float camY =( (currentZone + 0.5f) * screenHeight) -310;
+    //     camera.position.y = camY;
+    // }
+
+
+    // don't move camera, if player hits certain y change to that y section
+    // add camera and position adjuster when you change the screen size
 }
 
 void Player::Draw(sf::RenderWindow& window) {

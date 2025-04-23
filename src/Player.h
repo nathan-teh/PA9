@@ -18,7 +18,7 @@ public:
     ~Player();
 
 
-    void Update(float deltaTime) override;
+    void Update(float deltaTime, float& playerY) override;
     void Draw(sf::RenderWindow& window) override;
     void OnCollision(sf::Vector2f direction);
     Collider* GetCollider() { return new Collider(mBody); }

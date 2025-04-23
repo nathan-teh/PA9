@@ -10,7 +10,7 @@
 
 class Character {
 public:
-    virtual void Update(float deltaTime);
+    virtual void Update(float deltaTime, float& playerY);
     virtual void Draw(sf::RenderWindow& window);
     //virtual Collider getCollider() {return nullptr;}
 
