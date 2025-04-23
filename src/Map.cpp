@@ -13,7 +13,7 @@ void Map::loadMap(std::vector<std::unique_ptr<GameObject>> &objects, sf::Texture
     sf::Texture &wood, sf::Texture &greyBrick, sf::Texture &emptyBrick, sf::Vector2f& playerPos) {
 
     sf::Image image;
-    if (!image.loadFromFile("assets/images/finalMap1.png")) { // map
+    if (!image.loadFromFile("assets/images/temppMap.png")) { // map
         std::cerr << "Failed to load map image!" << std::endl;
         return;
     }

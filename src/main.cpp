@@ -27,7 +27,7 @@ enum class GameState {
 int main()
 {
     sf::Texture backgroundTexture;
-    if (!backgroundTexture.loadFromFile("assets/images/frame.png")) {
+    if (!backgroundTexture.loadFromFile("assets/images/easeter2.png")) {
         std::cerr << "Failed to load player texture!\n";
     }
 
@@ -148,8 +148,8 @@ int main()
 
 
 
-    //Player user(&playerTexture, pos, 165            ,215);
-    auto player = std::make_unique<Player>(&playerTexture, sf::Vector2u(4, 5), 0.1f,pos, 200,215, size, collisionSize);
+    //Player user(&playerTexture, pos, 165            ,215); // 215
+    auto player = std::make_unique<Player>(&playerTexture, sf::Vector2u(4, 5), 0.1f,pos, 200,415, size, collisionSize);
     Player* user = player.get(); // safe reference
     objects.push_back(std::move(player));
 
