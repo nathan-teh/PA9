@@ -29,13 +29,9 @@ void Animation::Update(int row, float deltaTime, bool faceRight) {
         uvRect.size.x=abs(uvRect.size.x);
     }
 
-    else if (faceRight ) {
+    else {
         uvRect.position.x=(currentImage.x + 1)* abs(uvRect.size.x);
         uvRect.size.x=-abs(uvRect.size.x);
-    }
-    else {
-        uvRect.position.x=currentImage.x*uvRect.size.x;
-        //uvRect.position.y=currentImage.y*uvRect.size.y;
     }
 }
 

@@ -3,6 +3,7 @@
 //
 
 #include "Map.h"
+#include <iostream>
 
 Map::Map(float cellSize) {
     this->cellSize = cellSize;
@@ -47,9 +48,6 @@ void Map::loadMap(std::vector<std::unique_ptr<GameObject>> &objects, sf::Texture
 
             }
             else if (color.r > 200 && color.g > 200 && color.b < 100) {
-
-                //std::cout << "Light Blue" << std::endl;
-
                 objects.push_back(std::make_unique<Platform>(
                     &wood,
                     sf::Vector2f(cellSize, cellSize),
@@ -74,7 +72,6 @@ void Map::loadMap(std::vector<std::unique_ptr<GameObject>> &objects, sf::Texture
                     sf::Vector2f(cellSize, cellSize),
                     sf::Vector2f{x * cellSize, y * cellSize})
                 );
-
             }
         }
     }

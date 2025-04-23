@@ -16,7 +16,7 @@ bool Collider::checkCollision(Collider& other, sf::Vector2f& direction, float pu
     float intersectX = std::abs(deltaX) - (otherHalfSize.x + thisHalfSize.x);
     float intersectY = std::abs(deltaY) - (otherHalfSize.y + thisHalfSize.y);
 
-    // If there's a collision
+    // If collision
     if (intersectX < 0.0f && intersectY < 0.0f) {
         float pushClamped = std::min(std::max(push, 0.0f), 1.0f);
 

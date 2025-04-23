@@ -1,11 +1,7 @@
 #include "Camera.h"
-Camera::Camera(float zoomLevel): zoomLevel(zoomLevel) {
-}
-
 
 sf::View Camera::GetView(sf::Vector2u windowSize) {
     float aspect = (float)windowSize.x / (float)windowSize.y;
-
 
     sf::Vector2f size;
 

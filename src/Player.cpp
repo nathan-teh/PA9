@@ -54,13 +54,10 @@ void Player::Update(float deltaTime, float& playerY){
     }
     if (velocity.y!=0) row=1;
     velocity.y+=981.0f*deltaTime;
-    //mBody.move(velocity*deltaTime);
-    //collisionBox.move(velocity*deltaTime);
     sf::Vector2f newPos = collisionBox.getPosition() + velocity * deltaTime;
     collisionBox.setPosition(newPos);
     mBody.setPosition(collisionBox.getPosition());
     this->pos=newPos;
-    //mBody.setPosition(newPos);
 
 
     if (!isGrounded) canJump = false;
@@ -88,8 +85,8 @@ void Player::OnCollision(sf::Vector2f direction) {
         velocity.y=0.0f;
         canJump=true;
         isGrounded = true;
-
     }
+
     else if (direction.y>0.0f) velocity.y=0.0f;
 
 

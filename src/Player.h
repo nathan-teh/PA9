@@ -8,7 +8,6 @@
 #include "GameObject.h"
 #include "Animation.h"
 #include <SFML/Audio.hpp>
-#include <SFML/Audio/Sound.hpp>
 #include "Camera.h"
 
 extern Camera camera;
