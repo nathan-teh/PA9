@@ -39,7 +39,9 @@ int main()
     sf::Vector2f collisionSize = {30.0f,80.0f};
     sf::Clock deltaClock;
     sf::Vector2f pos(600,300);
-    std::vector<GameObject*> objects;
+    //std::vector<GameObject*> objects;
+    std::vector<std::unique_ptr<GameObject>> objects;
+
     Platform platform1(nullptr,sf::Vector2f(400.0f,200.0f),(sf::Vector2f(640.0f,500)));
     Platform platform2(nullptr,sf::Vector2f(400.0f,100.0f),(sf::Vector2f(250.0f,400)));
     Platform platform3(nullptr,sf::Vector2f(400.0f,400.0f),(sf::Vector2f(800.0f,500)));
@@ -48,9 +50,8 @@ int main()
     //objects.push_back(&platform1);
     //objects.push_back(&platform2);
     //objects.push_back(&platform3);
-    }
 
-    sf::Vector2f pos{}; // set this to   // GET IMAGE SIZE
+    //sf::Vector2f pos{}; // set this to   // GET IMAGE SIZE
 
    // camera.position = pos;//sf::Vector2f({400,800});
 
@@ -94,7 +95,7 @@ int main()
 
     // pass in a vector instead!!
     map.loadMap(objects, brownBrick, brokenBrick, wood, greyBrick, emptyBrick, pos);
-    Player user(&playerTexture, sf::Vector2u(4, 5), 0.1f,pos, 200,100, size, collisionSize); //can change jump height/speed
+    auto user = std::make_unique<Player>(&playerTexture, sf::Vector2u(4, 5), 0.1f,pos, 200,100, size, collisionSize); //can change jump height/speed
 
 
     std::cout << "FOUND " << pos.x << " " << pos.y << std::endl;
@@ -117,9 +118,8 @@ int main()
 
 
 
-    Player user(&playerTexture, pos, 165            ,215);
-    Begin(window);
-    objects.push_back(&user);
+    //Player user(&playerTexture, pos, 165            ,215);
+    objects.push_back(std::move(user));
 
     float deltaTime = 0.0f;
     sf::Clock clock;
@@ -137,8 +137,8 @@ int main()
         sf::Vector2f direction;
         for (const auto& obj : objects) {
             if (obj->IsPlatform()) {
-                if (obj->GetCollider()->checkCollision(*user.GetCollider(), direction, 1.0f))
-                    user.OnCollision(direction);
+                if (obj->GetCollider()->checkCollision(*user->GetCollider(), direction, 1.0f))
+                    user->OnCollision(direction);
             }
         }
         window.clear();
@@ -149,7 +149,6 @@ int main()
 
 
         camera.position.x = window.getSize().x / 2.0f;
-        user.Draw(window);
         window.setView(window.getDefaultView());
         window.draw(elevation);
 

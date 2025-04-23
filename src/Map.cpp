@@ -9,7 +9,7 @@ Map::Map(float cellSize) {
 }
 
 // brownBrick, brokenBrick, wood, greyBrick, emptyBrick
-void Map::loadMap(std::vector<std::unique_ptr<Platform>> &platforms, sf::Texture &brownBrick, sf::Texture &brokenBrick,
+void Map::loadMap(std::vector<std::unique_ptr<GameObject>> &objects, sf::Texture &brownBrick, sf::Texture &brokenBrick,
     sf::Texture &wood, sf::Texture &greyBrick, sf::Texture &emptyBrick, sf::Vector2f& playerPos) {
 
     sf::Image image;
@@ -31,7 +31,7 @@ void Map::loadMap(std::vector<std::unique_ptr<Platform>> &platforms, sf::Texture
                     sf::Vector2f{x * cellSize, y * cellSize}
                 );
 
-                platforms.push_back(std::move(platform));
+                objects.push_back(std::move(platform));
             } else if (color.r > 200 && color.g < 50 && color.b < 50) {
                 //std::cout << "---RED--" << std::endl;
                 playerPos = sf::Vector2f(cellSize * x + cellSize / 2.0F, cellSize * y + cellSize / 2.0F);
@@ -46,7 +46,7 @@ void Map::loadMap(std::vector<std::unique_ptr<Platform>> &platforms, sf::Texture
                     sf::Vector2f{x * cellSize, y * cellSize}
                 );
 
-                platforms.push_back(std::move(platform));
+                objects.push_back(std::move(platform));
             }
             else if (color.r > 200 && color.g > 200 && color.b < 100) {
 
@@ -58,7 +58,7 @@ void Map::loadMap(std::vector<std::unique_ptr<Platform>> &platforms, sf::Texture
                     sf::Vector2f{x * cellSize, y * cellSize}
                 );
 
-                platforms.push_back(std::move(platform));
+                objects.push_back(std::move(platform));
             }
             else if (color.g > 200 && color.r < 100 && color.b < 100) {
 
@@ -68,7 +68,7 @@ void Map::loadMap(std::vector<std::unique_ptr<Platform>> &platforms, sf::Texture
                     sf::Vector2f{x * cellSize, y * cellSize}
                 );
 
-                platforms.push_back(std::move(platform));
+                objects.push_back(std::move(platform));
             }
 
             else if (color.r > 200 && color.g > 100 && color.b < 50) {
@@ -79,7 +79,7 @@ void Map::loadMap(std::vector<std::unique_ptr<Platform>> &platforms, sf::Texture
                     sf::Vector2f{x * cellSize, y * cellSize}
                 );
 
-                platforms.push_back(std::move(platform));
+                objects.push_back(std::move(platform));
             }
         }
     }
