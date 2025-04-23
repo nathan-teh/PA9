@@ -109,19 +109,19 @@ void testGravityToFile(std::ostream& out) {
         out << "FAIL: Dummy texture failed to load for gravity test.\n";
         return;
     }
-    Player player(&dummyTexture, sf::Vector2u(0, 0), 0.3f, sf::Vector2f(0.f, 0.f), 0.0f, 0.0f, sf::Vector2f(50.f, 50.f), sf::Vector2f(40.f, 40.f)); // Default values for complete constructor
+    Player player(&dummyTexture, sf::Vector2u(0, 0), 0.3f, sf::Vector2f(0.f, 50.f), 0.0f, 0.0f, sf::Vector2f(5.f, 5.f), sf::Vector2f(5.f, 5.f)); // Default values for complete constructor
 
     float dummyY = 0.0f;
-    float deltaTime = 0.1f;
 
     // Capture starting Y position
     float initialY = dummyY;
-    player.Update(deltaTime);
-
+    player.Update(0);
+    std::cout << "Y: " << player.getPosY() << std::endl;
     // Capture position after 1st update
     float afterFirstUpdateY = player.getPosY();
 
-    player.Update(deltaTime);
+    player.Update(.5f);
+    std::cout << "Y: " << player.getPosY() << std::endl;
 
     // Capture position after 2nd update
     float afterSecondUpdateY = player.getPosY();

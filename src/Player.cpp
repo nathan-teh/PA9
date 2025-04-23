@@ -57,8 +57,8 @@ void Player::Update(float deltaTime){
     //mBody.move(velocity*deltaTime);
     //collisionBox.move(velocity*deltaTime);
     sf::Vector2f newPos = collisionBox.getPosition() + velocity * deltaTime;
-    mBody.setPosition(collisionBox.getPosition());
     collisionBox.setPosition(newPos);
+    mBody.setPosition(collisionBox.getPosition());
     //mBody.setPosition(newPos);
 
 
