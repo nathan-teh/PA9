@@ -8,8 +8,19 @@
 
 #include "Player.h"
 #include <iostream>
-
+/* 
+* FOR NETWORKING (UNCOMMENT IF YOU WANT TO TEST IT)
+#include <winsock2.h>
+#pragma comment(lib, "ws2_32.lib")
+*/
 Camera camera(1000); // global camera object for tracking player movement
+
+/*
+* * FOR NETWORKING (UNCOMMENT IF YOU WANT TO TEST IT)
+SOCKET sock = INVALID_SOCKET;
+sockaddr_in serverHint;
+bool socketInitialized = false;
+*/
 
 ///////////////////////////////////////////////////////////////////////
 /// Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
@@ -55,8 +66,37 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
     if (!victoryMusic.openFromFile("assets/sounds/Victory_SFX.ogg")) {
         std::cerr << "Failed to load victory music!" << std::endl;
     }
+   /*
+    // Initialize socket
+    WSAData data;
+    WORD ver = MAKEWORD(2, 2);
+    int wsResult = WSAStartup(ver, &data);
+    if (wsResult == 0) {
+        sock = socket(AF_INET, SOCK_STREAM, 0);
+        if (sock != INVALID_SOCKET) {
+            serverHint.sin_family = AF_INET;
+            serverHint.sin_port = htons(54000);  // Changed to match the server port
+            serverHint.sin_addr.s_addr = inet_addr("127.0.0.1");
+
+            if (connect(sock, (sockaddr*)&serverHint, sizeof(serverHint)) == 0) {
+                socketInitialized = true;
+            }
+        }
+    }
+   */
 }
 
+/*
+* * FOR NETWORKING (UNCOMMENT IF YOU WANT TO TEST IT)
+// Clean up socket on shutdown
+Player::~Player() {
+    if (socketInitialized) {
+        closesocket(sock);
+        WSACleanup();
+    }
+}
+
+*/
 ///////////////////////////////////////////////////////////////////////
 /// Update(float deltaTime)
 /// \pre     none
@@ -137,6 +177,16 @@ void Player::Update(float deltaTime){
     }
     // don't move camera, if player hits certain y change to that y section
     // add camera and position adjuster when you change the screen size
+
+    /*
+    * * FOR NETWORKING (UNCOMMENT IF YOU WANT TO TEST IT)
+     // Send player position to server if socket is initialized
+    if (socketInitialized) {
+        std::string posData = std::to_string(pos.x) + "," + std::to_string(pos.y);
+        send(sock, posData.c_str(), posData.size() + 1, 0);
+    }
+
+    */
 }
 
 ///////////////////////////////////////////////////////////////////////

@@ -21,6 +21,10 @@ public:
     Player(sf::Texture *texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f pos, float speed,
            float jumpHeight, sf::Vector2f size, sf::Vector2f collisionSize); // Constructor
     ~Player() {} // Destructor
+    /*
+       * FOR NETWORKING (UNCOMMENT IF YOU WANT TO TEST IT, COMMENT THE DESTRUCTOR ABOVE)
+       ~Player();
+    */
     sf::Vector2f GetPosition() const override {return pos;}  // gets current player position
     void Update(float deltaTime) override; // updates movement, animation, camera
     void Draw(sf::RenderWindow& window) override; // renders player sprite
