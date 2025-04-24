@@ -1,3 +1,13 @@
+///////////////////////////////////////////////////////////////////////////////
+/// \file         main.cpp
+/// \author       Tifanie Ngo, Issac Bermudez, Nathan Teh, Karen Tinoco
+/// \date         4/23/25
+/// \brief        This overall program creates a game called Yo-Ho Jump! This
+///               game is about a pirate duck, who is searching far across the
+///               Seven Seas for his long-lost parrot! Jump to the top of the 
+///               tower to find him...or will you?
+///////////////////////////////////////////////////////////////////////////////
+
 #include <SFML/Graphics.hpp>
 
 #include "Player.h"
@@ -9,16 +19,7 @@
 #include "Button.hpp"
 #include "Map.h"
 #include "TestFunctions.h"
-#include "Music.h""
-
-/*
-    Changes by Tifanie Ngo
-    4/21: connected main menu, transition screen and added jump sound to gameplay code (based off secondBranch)
-    4/22: pulled updatedMap, adjusted some values to make program functional, added victory sound, fixed bug
-          where duck moves if user moves window for better visiblity
-
-          - Added new main menu music after thinking about song choice; added gameplay music
-*/
+#include "Music.h"
 
 enum class GameState {
     MainMenu,
@@ -256,7 +257,7 @@ int main()
             user->Draw(window);
             camera.position.x = window.getSize().x / 2.0f;
             window.setView(window.getDefaultView());
-            int rawAltitude = static_cast<int>(startingAltitude - playerY);
+            int rawAltitude = static_cast<int>(startingAltitude - user->GetPosition().y);
             int realAltitude = std::max(0, rawAltitude);
             elevation.setString("Altitude: " + std::to_string(realAltitude));
             window.draw(elevation);
