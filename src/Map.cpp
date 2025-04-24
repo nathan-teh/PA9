@@ -46,7 +46,7 @@ void Map::loadMap(std::vector<std::unique_ptr<GameObject>> &objects, sf::Texture
 
     // load map image from file
     sf::Image image;
-    if (!image.loadFromFile("assets/images/finalFinalMap.png")) { // map
+    if (!image.loadFromFile("assets/images/mappyy.png")) { // map
         std::cerr << "Failed to load map image!" << std::endl;
         return;
     }
