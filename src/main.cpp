@@ -31,7 +31,7 @@ int main()
 
     // load background texture for game
     sf::Texture backgroundTexture;
-    if (!backgroundTexture.loadFromFile("assets/images/frame.png")) {
+    if (!backgroundTexture.loadFromFile("assets/images/finalFinalImage.png")) {
         std::cerr << "Failed to load player texture!\n";
     }
 
@@ -96,12 +96,12 @@ int main()
 
     // loads different platform textures
     sf::Texture brownBrick;
-    if (!brownBrick.loadFromFile("assets/images/brownV3.png")) {
+    if (!brownBrick.loadFromFile("assets/images/firstBrick.png")) {
         std::cerr << "Failed to load brick texture!" << std::endl;
         return -1;
     }
     sf::Texture brokenBrick;
-    if (!brokenBrick.loadFromFile("assets/images/bb4.png")) {
+    if (!brokenBrick.loadFromFile("assets/images/secondBrick.png")) {
         std::cerr << "Failed to load brick texture!" << std::endl;
         return -1;
     }
