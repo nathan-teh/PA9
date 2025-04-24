@@ -29,7 +29,6 @@ add_executable(main
         src/Button.hpp
         src/TestFunctions.cpp
         src/TestFunctions.h
-        src/Music.cpp
         src/Music.h
 )
 target_compile_features(main PRIVATE cxx_std_17)
