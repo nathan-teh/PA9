@@ -12,7 +12,7 @@ class Platform : public GameObject{
 public:
     Platform(sf::Texture* texture, sf::Vector2f size, sf::Vector2f pos);
     ~Platform() {}
-    void Update(float deltaTime, float& playerY) override {}
+    void Update(float deltaTime) override {}
     bool IsPlatform() const override { return true; }
     void Draw(sf::RenderWindow& window) override;
     sf::Vector2f GetPosition() const override {return pos;}

@@ -12,7 +12,7 @@ public:
     virtual ~GameObject() = default;
     virtual bool IsPlatform() const { return false; }
 
-    virtual void Update(float deltaTime, float& playerY) = 0;
+    virtual void Update(float deltaTime) = 0;
     virtual void Draw(sf::RenderWindow& window) = 0;
     virtual Collider* GetCollider()=0;
 

@@ -6,7 +6,6 @@
 #include <SFML/Graphics.hpp>
 
 Animation::Animation(sf::Texture *texture, sf::Vector2u imageCount, float switchTime) {
-
     this->imageCount=imageCount;
     this->switchTime=switchTime;
     this->totalTime=0.0f;
@@ -28,7 +27,6 @@ void Animation::Update(int row, float deltaTime, bool faceRight) {
         uvRect.position.x=currentImage.x*uvRect.size.x;
         uvRect.size.x=abs(uvRect.size.x);
     }
-
     else {
         uvRect.position.x=(currentImage.x + 1)* abs(uvRect.size.x);
         uvRect.size.x=-abs(uvRect.size.x);

@@ -10,14 +10,14 @@ Isaac Bermudez
 
 class MusicPlayer {
 public:
-    MusicPlayer();
-    ~MusicPlayer();
+    MusicPlayer() {};
+    ~MusicPlayer() {music.stop();}
 
-    bool load(const std::string& filename); //load music from file
+    bool load(const std::string& filename) {return music.openFromFile(filename);}
     void play(); //play music
-    void stop(); //stop the music (if needed)
-    void setVolume(float volume); //set volume
-    sf::Music::Status getStatus(){return music.getStatus();}; //get status of music
+    void stop() {music.stop();}
+    void setVolume(float volume) {music.setVolume(volume);}
+    sf::Music::Status getStatus() {return music.getStatus();}; //get status of music
 
 private:
     sf::Music music; //Music object

@@ -4,7 +4,7 @@
 #include <iostream>
 
 using namespace std;
-using namespace sf;
+//using namespace sf;
 
 class Button : public sf::RectangleShape
 {
@@ -23,8 +23,8 @@ public:
 
 	bool isMouseOverButton(sf::RenderWindow& window)
 	{
-		float mouseX = Mouse::getPosition(window).x;
-		float mouseY = Mouse::getPosition(window).y;
+		float mouseX = sf::Mouse::getPosition(window).x;
+		float mouseY = sf::Mouse::getPosition(window).y;
 
 		float btnPosX = this->getPosition().x;
 		float btnPosY = this->getPosition().y;
@@ -32,14 +32,7 @@ public:
 		float x2 = btnPosX + this->getSize().x;
 		float y2 = btnPosY + this->getSize().y;
 		
-		if (mouseX >= btnPosX && mouseX <= x2 && mouseY >= btnPosY && mouseY <= y2)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		if (mouseX >= btnPosX && mouseX <= x2 && mouseY >= btnPosY && mouseY <= y2) return true;
+		return false;
 	}
-private:
 };

@@ -9,11 +9,8 @@
 #include "Platform.h"
 #include <vector>
 
-
 class Map {
 public:
-
-    // brownBrick, brokenBrick, wood, greyBrick, emptyBrick
     explicit Map(float cellSize = 24.0);
     float cellSize;
     std::vector<std::vector<int>> grid;

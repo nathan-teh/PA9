@@ -6,8 +6,6 @@
 #define COLLIDER_H
 #include <SFML/Graphics.hpp>
 
-
-
 class Collider {
 public:
     Collider(sf::RectangleShape& body) : body(body) {};
@@ -16,6 +14,7 @@ public:
     bool checkCollision(Collider& other, sf::Vector2f& direction,float push);
     sf::Vector2f GetPosition() {return body.getPosition();}
     sf::Vector2f GetHalfSize() {return body.getSize()/2.0f;}
+
 private:
     sf::RectangleShape& body;
 };

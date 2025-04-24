@@ -63,7 +63,7 @@ int main()
         return -1;
     }
 
-    Font mainMenuFont;
+    sf::Font mainMenuFont;
     if (!mainMenuFont.openFromFile("assets/images/TheRumIsGone-Wy1nG.ttf")) {
         std::cerr << "Failed to load font\n";
         return -1;
@@ -137,28 +137,28 @@ int main()
     mainMenuMusic.play();
 
     sf::Sprite duckSprite(playerTexture2);
-    duckSprite.setScale(Vector2f(0.3f, 0.3f));
-    duckSprite.setPosition(Vector2f(250.f, 250.f));
+    duckSprite.setScale(sf::Vector2f(0.3f, 0.3f));
+    duckSprite.setPosition(sf::Vector2f(250.f, 250.f));
 
     sf::Sprite bgMainMenu(titleTexture);
     sf::Vector2f windowSize(static_cast<float>(window.getSize().x), static_cast<float>(window.getSize().y));
     sf::Vector2f textureSize(static_cast<float>(titleTexture.getSize().x), static_cast<float>(titleTexture.getSize().y));
-    bgMainMenu.setScale(Vector2f(windowSize.x / textureSize.x, windowSize.y / textureSize.y));
+    bgMainMenu.setScale(sf::Vector2f(windowSize.x / textureSize.x, windowSize.y / textureSize.y));
 
     sf::Text title(mainMenuFont);
     title.setCharacterSize(70);
     title.setFillColor(sf::Color::Cyan);
     title.setStyle(sf::Text::Italic);
     title.setString("YO-HO JUMP o");
-    title.setPosition(Vector2f(580.0f, 300.0f));
+    title.setPosition(sf::Vector2f(580.0f, 300.0f));
 
-    Button button(Vector2f(300.0f, 100.0f), Vector2f(750.0f, 445.0f), sf::Color(33, 122, 24));
+    Button button(sf::Vector2f(300.0f, 100.0f), sf::Vector2f(750.0f, 445.0f), sf::Color(33, 122, 24));
 
     sf::Text buttonText(mainMenuFont);
     buttonText.setCharacterSize(70);
     buttonText.setFillColor(sf::Color::Black);
     buttonText.setString("PLAY");
-    buttonText.setPosition(Vector2f(770.0f, 450.0f));
+    buttonText.setPosition(sf::Vector2f(770.0f, 450.0f));
 
     // --- Set initial game state ---
     GameState currentState = GameState::MainMenu;
@@ -228,7 +228,7 @@ int main()
             transitionText.setString("I have to find my parrot...");
             transitionText.setCharacterSize(20);
             transitionText.setFillColor(sf::Color::White);
-            transitionText.setPosition(Vector2f(480.0f, 330.0f));
+            transitionText.setPosition(sf::Vector2f(480.0f, 330.0f));
             window.draw(transitionText);
 
             if (transitionClock.getElapsedTime().asSeconds() > 5.0f) currentState = GameState::Gameplay;
@@ -239,7 +239,7 @@ int main()
             sf::Vector2f direction;
 
             for (auto& obj : objects)
-                obj->Update(deltaTime, playerY);
+                obj->Update(deltaTime);
 
             for (const auto& obj : objects) {
                 if (obj->IsPlatform()) {

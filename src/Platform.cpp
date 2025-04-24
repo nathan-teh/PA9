@@ -12,6 +12,4 @@ Platform::Platform(sf::Texture* texture, sf::Vector2f size, sf::Vector2f pos) {
     this->pos=pos;
 }
 
-void Platform::Draw(sf::RenderWindow& window) {
-    window.draw(body);
-}
+void Platform::Draw(sf::RenderWindow& window) {window.draw(body);}
