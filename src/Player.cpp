@@ -75,26 +75,36 @@ void Player::Update(float deltaTime){
 
     if (mBody.getPosition().y > 9430) {
         camera.position.y = 9985;
-    } else if (mBody.getPosition().y > 8575) { //8530
+    }
+    else if (mBody.getPosition().y > 8575) {
         camera.position.y = 9085;
-    } else if (mBody.getPosition().y > 7720) { // 855
+    }
+    else if (mBody.getPosition().y > 7720) {
         camera.position.y = 8185;
-    } else if (mBody.getPosition().y > 6865) {
-        camera.position.y = 7285; // change??
-    } else if (mBody.getPosition().y > 5825) {
+    }
+    else if (mBody.getPosition().y > 6865) {
+        camera.position.y = 7285;
+    }
+    else if (mBody.getPosition().y > 5825) {
         camera.position.y = 6385;
-    } else if (mBody.getPosition().y > 4980) { //4980
-        std::cout << "Change ME" << std::endl;
+    }
+    else if (mBody.getPosition().y > 4980) {
         camera.position.y = 5485;
-    } else if (mBody.getPosition().y > 4125) { // 4300
-        std::cout << "I'm HERE" << std::endl;
-        camera.position.y = 4585;           //4585;
-    } else if (mBody.getPosition().y > 3270) {
-        camera.position.y = 3685;//3685;
-    } else if (mBody.getPosition().y > 2415) {
-        camera.position.y = 2785;//2785;
-    } else if (mBody.getPosition().y > 1560) {
-        camera.position.y = 1885;//1885;
+    }
+    else if (mBody.getPosition().y > 4125) {
+        camera.position.y = 4585;
+    }
+    else if (mBody.getPosition().y > 3270) {
+        camera.position.y = 3685;
+    }
+    else if (mBody.getPosition().y > 2420) {
+        camera.position.y = 2785;
+    }
+    else if (mBody.getPosition().y > 1873) {
+        camera.position.y = 2450;
+    }
+    else if (mBody.getPosition().y > 1000) {
+        camera.position.y = 1350;
     }
 
 
