@@ -7,14 +7,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "TestFunctions.h"
-#include <fstream>
-#include <iostream>
-#include <SFML/Graphics.hpp>
-#include "Music.h"
-#include "Player.h"
-#include "Platform.h"
-#include "Map.h"
-#include "Camera.h"
 
 //
 // Test 1: Map Loading Test

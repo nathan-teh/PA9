@@ -13,12 +13,11 @@
 
 class MusicPlayer {
 public:
-    MusicPlayer() {};
-    ~MusicPlayer() {music.stop();}
-
-    bool load(const std::string& filename) {return music.openFromFile(filename);}
+    MusicPlayer() {}; // default constructor
+    ~MusicPlayer() {music.stop();} // destructor
+    bool load(const std::string& filename) {return music.openFromFile(filename);} // loads songs
     void play(){music.setLooping(true); music.play();} //play music
-    void stop() {music.stop();}
+    void stop() {music.stop();} 
     void setVolume(float volume) {music.setVolume(volume);}
     sf::Music::Status getStatus() {return music.getStatus();}; //get status of music
 

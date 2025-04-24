@@ -6,17 +6,28 @@
 ///               Yo-Ho Jump!
 ///////////////////////////////////////////////////////////////////////////////
 
+#ifndef BUTTON_HPP
+#define BUTTON_HPP
+
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <iostream>
 
 using namespace std;
-//using namespace sf;
 
 class Button : public sf::RectangleShape
 {
 public:
+///////////////////////////////////////////////////////////////////////
+/// Button(const sf::Vector2f& size, const sf::Vector2f& pos, const sf::Color& color)
+/// \pre     none
+/// \post    button initialized, positioned with given fill color
+/// \param   size (width & height of button); pos (screen position for button); color 
+///              (fill color of button)
+/// \return  none
+/// \throw   none
+///////////////////////////////////////////////////////////////////////
 	Button(const sf::Vector2f& size, const sf::Vector2f& pos, const sf::Color& color) :
 		sf::RectangleShape(size)
 	{
@@ -24,11 +35,27 @@ public:
 		this->setPosition(pos);
 	}
 
+///////////////////////////////////////////////////////////////////////
+/// setBackColor(sf::Color color)
+/// \pre     none
+/// \post    button's fill color updated
+/// \param   color (fill color for button)
+/// \return  none
+/// \throw   none
+///////////////////////////////////////////////////////////////////////
 	void setBackColor(sf::Color color)
 	{
 		this->setFillColor(color);
 	}
 
+///////////////////////////////////////////////////////////////////////
+/// isMouseOverButton(sf::RenderWindow& window)
+/// \pre     valid SFML RenderWindow passed
+/// \post    returns true if mouse position overlaps button bounds
+/// \param   window (reference to SFML render window for mouse position)
+/// \return  true if button registers mouse hovering under it (otherwise false)
+/// \throw   none
+///////////////////////////////////////////////////////////////////////
 	bool isMouseOverButton(sf::RenderWindow& window)
 	{
 		float mouseX = sf::Mouse::getPosition(window).x;
@@ -44,3 +71,5 @@ public:
 		return false;
 	}
 };
+
+#endif // BUTTON_HPP

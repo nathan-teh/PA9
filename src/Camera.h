@@ -2,7 +2,8 @@
 /// \file         Camera.h
 /// \author       Karen Tinoco
 /// \date         4/22/25
-/// \brief        This file sets up the camera for Yo-Ho Jump!
+/// \brief        This file sets up the camera for Yo-Ho Jump, including
+///               logic for view creation and screen aspect ratio handling
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef CAMERA_H
@@ -11,11 +12,11 @@
 
 class Camera {
 public:
-    Camera(float zoomLevel = 5.0) : zoomLevel(zoomLevel) { }
-    sf::View GetView(sf::Vector2u windowSize);
+    Camera(float zoomLevel = 5.0) : zoomLevel(zoomLevel) { } // constructs camera object with optional zoom level
+    sf::View GetView(sf::Vector2u windowSize); // creates and returns current view based on window size
 
-    float zoomLevel;
-    sf::Vector2f position;
+    float zoomLevel; // zoom level of camera
+    sf::Vector2f position; // current camera position
 };
 
 

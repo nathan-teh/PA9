@@ -9,41 +9,41 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "GameObject.h"
 #include "Animation.h"
-#include <SFML/Audio.hpp>
 #include "Camera.h"
+#include "GameObject.h"
+#include <SFML/Audio.hpp>
 
 extern Camera camera;
 
 class Player : public GameObject {
 public:
     Player(sf::Texture *texture, sf::Vector2u imageCount, float switchTime, sf::Vector2f pos, float speed,
-           float jumpHeight, sf::Vector2f size, sf::Vector2f collisionSize);
-    ~Player() {}
-    sf::Vector2f GetPosition() const override {return pos;}
-    void Update(float deltaTime) override;
-    void Draw(sf::RenderWindow& window) override;
-    void OnCollision(sf::Vector2f direction);
-    Collider* GetCollider() override {return new Collider(collisionBox);}
-    bool IsPlatform() const override { return false; }
-    float getPosY() {return pos.y;}
+           float jumpHeight, sf::Vector2f size, sf::Vector2f collisionSize); // Constructor
+    ~Player() {} // Destructor
+    sf::Vector2f GetPosition() const override {return pos;}  // gets current player position
+    void Update(float deltaTime) override; // updates movement, animation, camera
+    void Draw(sf::RenderWindow& window) override; // renders player sprite
+    void OnCollision(sf::Vector2f direction); // handles player collision response
+    Collider* GetCollider() override {return new Collider(collisionBox);} // returns player collider
+    bool IsPlatform() const override { return false; } // determines object as non-platform
+    float getPosY() {return pos.y;} // gets current Y-position of player
 
 private:
-    sf::RectangleShape mBody;
-    Animation animation;
-    float mSpeed;
-    sf::Vector2f pos;
-    bool canJump;
-    float jumpHeight;
-    sf::Vector2f velocity;
-    bool isGrounded;
-    unsigned int row;
-    bool faceRight;
-    sf::RectangleShape collisionBox;
-    sf::Music jump;
-    sf::Music victoryMusic;
-    bool playedVictory = false;
+    sf::RectangleShape mBody; // visual render of player
+    Animation animation; // handles sprite animation
+    float mSpeed; // movement speed
+    sf::Vector2f pos; // current position
+    bool canJump; // flag for jump capability
+    float jumpHeight; // jump height player is capable of
+    sf::Vector2f velocity; // current velocity of player
+    bool isGrounded; // flag for grounded state
+    unsigned int row; // current animation row
+    bool faceRight; // direction player is facing
+    sf::RectangleShape collisionBox; // collision boundary
+    sf::Music jump; // jump SFX
+    sf::Music victoryMusic; // victory SFX
+    bool playedVictory = false; // flag for victory SFX
 };
 
 
