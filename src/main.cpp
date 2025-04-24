@@ -31,7 +31,7 @@ int main()
 
     // load background texture for game
     sf::Texture backgroundTexture;
-    if (!backgroundTexture.loadFromFile("assets/images/frame.png")) {
+    if (!backgroundTexture.loadFromFile("assets/images/finalFinalImage.PNG")) {
         std::cerr << "Failed to load player texture!\n";
     }
 
