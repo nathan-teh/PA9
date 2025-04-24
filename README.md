@@ -12,7 +12,7 @@ Tifanie Ngo (Lab Section 09), Nathan Teh (Lab Section 09), Issac Bermudez (Lab S
 All assets and libraries (including SFML) is included in this CMake project, so no further installation should be required.
 
 ## Instructions
-Use the 'A' and 'D' to move your character left and right respectively and the spacebar to jump! Make your way up to the top strategically! But don't fall, or else you'll need to start over!
+Use the 'A' and 'D' keys to move your character left and right respectively and the spacebar to jump! Make your way up to the top strategically! But don't fall, or else you'll need to start over!
 
 ## Technologies
 This game was written in C++, with some C libraries included. For the graphics portion, we incorporated SFML as the framework. With its introduction in class and from current TAs, we thought it was an ideal choice to utilize for graphical rendering.
