@@ -1,6 +1,9 @@
-//
-// Created by Nathan Teh on 4/20/25.
-//
+///////////////////////////////////////////////////////////////////////////////
+/// \file         GameObject.h
+/// \author       Nathan Teh
+/// \date         4/20/25
+/// \brief        This file sets up the GameObject for Yo-Ho Jump!
+///////////////////////////////////////////////////////////////////////////////
 
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H

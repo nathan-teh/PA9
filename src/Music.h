@@ -1,7 +1,10 @@
-/*
-Isaac Bermudez
-4/22
-*/
+///////////////////////////////////////////////////////////////////////////////
+/// \file         Music.h
+/// \author       Issac Bermudez
+/// \date         4/22/25
+/// \brief        This file sets up the music player for main menu and
+///               gameplay music for Yo-Ho Jump!
+///////////////////////////////////////////////////////////////////////////////
 
 #ifndef MUSIC_HPP
 #define MUSIC_HPP

@@ -1,6 +1,10 @@
-//
-// Created by Nathan Teh on 4/20/25.
-//
+/////////////////////////////////////////////////////////////////////////////////
+/// \file         Player.h
+/// \author       Nathan Teh, Tifanie Ngo
+/// \date         4/20/25
+/// \brief        This file sets up the Player aspects (movement, size, position,
+///               speed, jump height, etc.) for Yo-Ho Jump!
+///////////////////////////////////////////////////////////////////////////////
 
 #ifndef PLAYER_H
 #define PLAYER_H

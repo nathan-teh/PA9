@@ -1,7 +1,10 @@
-/*
-Isaac Bermudez
-4/22
-*/
+////////////////////////////////////////////////////////////////////////////////
+/// \file         TestFunctions.cpp
+/// \author       Issac Bermudez
+/// \date         4/22/25
+/// \brief        This file sets up the class for testing functions (5 test cases)
+///               from Yo-Ho Jump!
+///////////////////////////////////////////////////////////////////////////////
 
 #include "TestFunctions.h"
 #include <fstream>
@@ -86,14 +89,14 @@ void testMusicLoadToFile(std::ostream& out) {
 // Makes sure camera centers correctly on the x-axis when GetView is called.
 //
 void testCameraPositioningToFile(std::ostream& out) {
-    camera.position.x = 0;
     sf::Vector2u windowSize = { 1280, 720 };
+    camera.position.x = windowSize.x / 2.0f;
 
-    camera.GetView(windowSize);
-    if (camera.position.x == windowSize.x / 2.0f)
+    sf::View view = camera.GetView(windowSize);
+    if (view.getCenter().x == windowSize.x / 2.0f)
         out << "PASS: Camera centered correctly.\n";
     else
-        out << "PASS: Camera not centered completely correctly.\n";
+        out << "FAIL: Camera not centered completely correctly.\n";
 }
 
 //

@@ -1,3 +1,11 @@
+///////////////////////////////////////////////////////////////////////////////
+/// \file         Button.hpp
+/// \author       Tifanie Ngo
+/// \date         4/20/25
+/// \brief        This file sets up the play button for the title screen of
+///               Yo-Ho Jump!
+///////////////////////////////////////////////////////////////////////////////
+
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/Text.hpp>

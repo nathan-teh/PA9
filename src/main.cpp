@@ -131,7 +131,6 @@ int main()
     objects.push_back(std::move(player));
 
     float deltaTime = 0.0f;
-    float playerY;
     int startingAltitude = pos.y;
 
     mainMenuMusic.setVolume(20);

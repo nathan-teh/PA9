@@ -1,6 +1,9 @@
-//
-// Created by Nathan Teh on 4/20/25.
-//
+///////////////////////////////////////////////////////////////////////////////
+/// \file         Animation.cpp
+/// \author       Nathan Teh
+/// \date         4/20/25
+/// \brief        This file sets up the animation for Yo-Ho Jump!
+///////////////////////////////////////////////////////////////////////////////
 
 #include "Animation.h"
 #include <SFML/Graphics.hpp>
