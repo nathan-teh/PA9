@@ -88,12 +88,12 @@ int main()
 
 
     sf::Texture brownBrick;
-    if (!brownBrick.loadFromFile("assets/images/brownV3.png")) {
+    if (!brownBrick.loadFromFile("assets/images/firstBrick.png")) {
         std::cerr << "Failed to load brick texture!" << std::endl;
         return -1;
     }
     sf::Texture brokenBrick;
-    if (!brokenBrick.loadFromFile("assets/images/bb4.png")) {
+    if (!brokenBrick.loadFromFile("assets/images/secondBrick.png")) {
         std::cerr << "Failed to load brick texture!" << std::endl;
         return -1;
     }
@@ -149,7 +149,7 @@ int main()
 
 
     //Player user(&playerTexture, pos, 165            ,215); // 215
-    auto player = std::make_unique<Player>(&playerTexture, sf::Vector2u(4, 5), 0.1f,pos, 200,215, size, collisionSize);
+    auto player = std::make_unique<Player>(&playerTexture, sf::Vector2u(4, 5), 0.1f,pos, 200,415, size, collisionSize);
     Player* user = player.get(); // safe reference
     objects.push_back(std::move(player));
 
